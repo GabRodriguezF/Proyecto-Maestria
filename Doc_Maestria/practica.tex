@@ -1,0 +1,385 @@
+%LTeX: language=es
+\documentclass[12pt,letterpaper,spanish,twoside]{article} % Impresión por ambos lados (twoside)
+
+% --- PAQUETES BÁSICOS Y IDIOMA ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel} % Ajusta tablas según normas en español
+
+
+% --- TIPOGRAFÍA (Times New Roman para el cuerpo) ---
+\usepackage{mathptmx} 
+
+% --- MÁRGENES (Exactamente los solicitados) ---
+\usepackage[left=3cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+% --- INTERLINEADO ---
+\usepackage{setspace}
+\onehalfspacing % Espacio y medio (1.5)
+
+% --- ELEMENTOS GRÁFICOS Y TABLAS ---
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+
+% --- LISTADOS DE CÓDIGO ---
+\usepackage{listings}
+\usepackage{color}
+\usepackage{pythontex}
+\usepackage{matlab-prettifier}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\floatname{algorithm}{Algoritmo}
+\renewcommand{\algorithmicrequire}{\textbf{Entrada:}}
+\renewcommand{\algorithmicensure}{\textbf{Salida:}}
+\renewcommand{\algorithmiccomment}[1]{\hfill\textcolor{gray}{\small $\triangleright$ #1}}
+
+\lstdefinestyle{MatlabIEEE}{
+    language=Matlab,
+    basicstyle=\ttfamily\scriptsize,
+    numbers=none,
+    backgroundcolor=\color{gray!5},
+    frame=single,
+    rulecolor=\color{black!30},
+    tabsize=3,
+    showstringspaces=false,
+    breaklines=true,
+    breakatwhitespace=true,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!40!black}\itshape,
+    stringstyle=\color{purple},
+    captionpos=b,
+    aboveskip=1em,
+    belowskip=1em,
+}
+
+% Configuración del estilo de código
+\lstdefinestyle{pseudocodigo}{
+    backgroundcolor=\color{gray!10},   % Fondo gris claro
+    basicstyle=\ttfamily\small,       % Fuente tipo máquina de escribir
+    breaklines=true,                   % Ajustar líneas largas automáticamente
+    frame=tb,                          % Línea superior e inferior
+    numbers=left,                      % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},     % Estilo de los números de línea
+    keywordstyle=\color{blue}\bfseries,% Palabras clave en azul y negrita
+    escapeinside={(*@}{@*)},           % Permite usar LaTeX/matemáticas dentro del código
+}
+\lstset{style=pseudocodigo}
+
+\definecolor{comments}{rgb}{0,.5,0}
+\definecolor{strings}{rgb}{.75,0,0}
+\lstset{basicstyle=\scriptsize,
+        language=Matlab,
+        stringstyle=\rmfamily\color{strings},
+        showstringspaces = false,
+        commentstyle=\color{comments}\textsl,
+        emph = {for,end,if,while,case,function},
+        emphstyle= \color{blue}\bfseries}
+        
+\renewcommand\lstlistlistingname{Índice de listados}
+\renewcommand\lstlistingname{Listado}
+
+% --- SANGRÍA Y ESPACIADO ENTRE PÁRRAFOS ---
+\setlength{\parindent}{0pt} % Primera línea de cada párrafo inicia al margen
+\setlength{\parskip}{1.25em}    % Separación limpia entre párrafos ante la falta de sangría
+
+% --- CONFIGURACIÓN DE ENCABEZADOS (FORMATO APA SIN NUMERACIÓN) ---
+\usepackage{titlesec}
+
+% Nivel 1: Centrado, negrita, tamaño 14
+\titleformat{\section}
+  {\normalfont\large\bfseries\filcenter}{}{0em}{}
+  
+% Nivel 2: Alineado a la izquierda, negrita, tamaño 12
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries}{}{0em}{}
+  
+% Nivel 3: De párrafo con sangría, negrita, mayúscula, minúscula y punto final
+\titleformat{\subsubsection}[runin]
+  {\normalfont\normalsize\bfseries\hspace*{1cm}}{}{0em}{}[.]
+
+% Nivel 4: De párrafo con sangría, negrita, cursiva y punto final
+\titleformat{\paragraph}[runin]
+  {\normalfont\normalsize\bfseries\itshape\hspace*{1cm}}{}{0em}{}[.]
+
+% Nivel 5: De párrafo con sangría, cursiva y punto final
+\titleformat{\subparagraph}[runin]
+  {\normalfont\normalsize\itshape\hspace*{1cm}}{}{0em}{}[.]
+
+\setcounter{secnumdepth}{0} % Desactiva la numeración automática de secciones de forma global
+
+% --- CONFIGURACIÓN DE PAGINACIÓN ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyfoot[R]{\thepage} % Número de página en la esquina derecha inferior
+\renewcommand{\headrulewidth}{0pt} % Sin líneas en el encabezado
+
+% Comando para dejar los dos espacios requeridos tras el margen superior al inicio de sección
+\newcommand{\espacioSeccion}{\vspace*{2\baselineskip}}
+
+% --- BIBLIOGRAFÍA EN FORMATO APA ---
+\usepackage{csquotes} % Necesario para citas en español con biblatex
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{referencias.bib}
+
+\begin{document}
+
+% =========================================================
+% PORTADA 1: EXTERIOR (Color Guinda simulado, se imprime por un lado)
+% =========================================================
+%\begin{titlepage}
+%\begin{singlespace}
+%\centering
+%\sffamily % Fuente Sans-Serif para aproximar los requerimientos de la portada
+
+% Logos superiores (Reemplaza con tus archivos reales de imagen si los tienes)
+% \noindent\includegraphics[width=4cm]{logo_cidesi.png}\hfill\includegraphics[width=2.5cm]{logo_conacyt.png}
+%{\large\bfseries CIDESI \hfill POSGRADO} \\
+%\rule{\textwidth}{1pt}
+
+%\vspace{2.5cm}
+
+% Título del proyecto (Arrus BT 30 equivalente / Grande)
+%{\fontsize{26}{30}\selectfont\bfseries Redes Destiladas para Clasificación de objetos aplicadas a un ROV Académico \par}
+
+%\vspace{2cm}
+
+%{\large\bfseries Proyecto Terminal \par}
+
+%\vspace{2cm}
+
+%{\large Por \par}
+%\vspace{0.3cm}
+%{\Large\bfseries Gabriel Rodríguez Feregrino \par}
+
+%\vspace{2cm}
+
+%{\large En cumplimiento a los requerimientos para obtener el Diploma de \par}
+%\vspace{0.3cm}
+%{\large\bfseries Especialidad Tecnólogo en Mecatrónica \par}
+
+%\vfill
+
+%\begin{flushleft}
+%\large
+%\textbf{Tutor académico:} Tomas Salgado Jiménez \\
+%\textbf{Tutor en planta:} Cristian Hamilton Sánchez Saquín
+%\end{flushleft}
+
+
+%{\large Santiago de Querétaro, Qro., México, Abril 2026 \par}
+%\end{singlespace}
+%\end{titlepage}
+
+%\cleardoublepage % Forzar que la siguiente portada inicie en hoja nueva derecha
+
+% =========================================================
+% PORTADA 2: INTERIOR (Blanca, replicando la estructura del Anexo 3)
+% =========================================================
+%\begin{titlepage}
+%\begin{singlespace}
+%\centering
+%\sffamily 
+
+% Logos superiores
+%{\large\bfseries CIDESI \hfill POSGRADO} \\
+%\rule{\textwidth}{1pt}
+
+%\vspace{2.5cm}
+
+% Título idéntico
+%{\fontsize{26}{30}\selectfont\bfseries Redes Destiladas para Clasificación de objetos aplicadas a un ROV Académico \par}
+
+%\vspace{2cm}
+
+%{\large\bfseries Proyecto de Investigación \par} % Variación textual del Anexo 3 para la interna
+
+%\vspace{2cm}
+
+%{\large Por \par}
+%\vspace{0.3cm}
+%{\Large\bfseries Gabriel Rodríguez Feregrino \par}
+
+%\vspace{2cm}
+
+%{\large En cumplimiento a los requerimientos para la obtención de la \par}
+%\vspace{0.3cm}
+%{\large\bfseries Especialidad Tecnólogo en Mecatrónica \par}
+
+%\vfill
+
+%\begin{flushleft}
+%\large
+%\textbf{Tutor académico:} Tomas Salgado Jiménez \\
+%\textbf{Tutor en planta:} Cristian Hamilton Sánchez Saquín
+%\end{flushleft}
+
+
+%{\large Santiago de Querétaro, Qro., México, Abril 2026. \par}
+%\end{singlespace}
+%\end{titlepage}
+
+%\includepdf[pages={1,2}]{Portadas.pdf}
+%\includepdf{Carta.pdf}
+%\includepdf{Auto1.pdf}
+%\includepdf{Auto2.pdf}
+
+% =========================================================
+% SECCIONES PRELIMINARES (Números Romanos)
+% =========================================================
+\cleardoublepage
+\pagenumbering{roman} % Comienza la numeración romana en la esquina inferior derecha
+
+%\espacioSeccion
+\begin{abstract}
+
+\end{abstract}
+
+\newpage
+\espacioSeccion
+\tableofcontents
+
+\newpage
+\espacioSeccion
+\listoffigures
+
+%\newpage
+%\espacioSeccion
+%\lstlistoflistings
+
+% =========================================================
+% CUERPO DEL TRABAJO (Números Arábigos y salto de página obligado)
+% =========================================================
+\cleardoublepage
+\pagenumbering{arabic} % Reinicia paginación a números arábigos (1, 2, 3...)
+
+\espacioSeccion
+\section{Introducción}
+%"Restauración geométricamente consistente y calibración adaptativa de cámaras submarinas para sistemas de visión de vehículos ROV"
+
+%Consiste en una descripción clara y concisa del problema que se trabajó. Debe proporcionar la información necesaria acerca del contenido general del proyecto pero no se debe adelantar el resultado final del trabajo.}
+
+Se propone desarrollar un algoritmo robusto de calibración de cámaras submarinas para sistemas de visión de vehículos ROV, capaz de mantener su precisión ante variaciones en las condiciones de adquisición de las imágenes. El algoritmo considerará el efecto de la temperatura del agua, variaciones en los componentes RGB e iluminación, buscando minimizar su influencia sobre los parámetros de calibración. La validación se realizará mediante experimentos controlados en tanque de agua y alberca. Se evaluará el desempeño del método mediante error de reproyección, estabilidad de los parámetros de calibración y precisión en reconstrucción 3D y medición de objetos
+submarinos.
+
+
+
+
+\newpage
+\espacioSeccion
+\section{Planteamiento del problema}
+%En esta sección el tutor define el problema a resolver por el estudiante. Por ejemplo se recomienda dar respuesta a las interrogantes:
+%¿Qué se va a hacer?, ¿Para qué servirá?, ¿Qué hechos anteriores guardan relación con el problema?, ¿Cuál es la situación actual?, ¿Qué pasa si no se hace nada?
+%Las respuestas a las preguntas plateadas deberán ser contestadas en las conclusiones del proyecto.
+
+
+
+\newpage
+\espacioSeccion
+\section{Objetivos}
+%El tutor en colaboración con el estudiante deducen el objetivo general del proyecto, del planteamiento del problema, ¿Qué se quiere obtener?
+
+%Los objetivos deben ser metas concretas, que puedan alcanzarse y deben ser posibles de verificar y medir.
+%Deben redactarse en forma clara, breve y concisa.
+%Esta estructura gramatical es básica:
+%Verbo en infinitivo + objeto directo + complementos circunstanciales.
+
+\subsection{Objetivo General}
+%Implementar una red destilada para la clasificación de señalamientos en entornos sumergidos.
+
+Realizar la implementación de una red neuronal destilada para la clasificación de señalamientos en entornos sumergidos, utilizando la arquitectura de un ROV académico previamente desarrollado, con el propósito de mejorar el sistema de control del mismo.
+
+\subsection{Objetivos Específicos}
+\begin{enumerate}
+    \item Realizar la creación de una interfaz para el control y monitoreo del ROV.
+    \item Realizar la creación de un controlador PID para la variable de la profundidad.
+    \item Desarrollar la arquitectura de la red neuronal estudiante y la destilación de conocimientos de la red neuronal maestro. 
+    \item Realizar un proceso de validación del proceso de destilamiento de conocimiento en la red estudiante.
+    \item Realizar pruebas en alberca de ambas redes para comparar su desempeño.
+\end{enumerate}
+
+\newpage
+\espacioSeccion
+\section{Justificación}
+%Describir los motivos por los cuales se realiza el proyecto, resaltar la importancia desde los puntos de vista teórico y práctico.
+%Enunciar los beneficios que aportará la realización del proyecto.
+%Demostrar la factibilidad de hacer el proyecto.
+%Identificar quienes son los usuarios o clientes potenciales que se beneficiarán con el proyecto.
+%Debido a que el sistema no depende de una computadora externa para procesar la información de la red neuronal, hace que el ROV sea mucho más independiente del hardware que el operador de turno tenga. Además, al ser un sistema embebido, el consumo de energía es mucho menor, lo cual hace que el ROV pueda trabajar por más tiempo sin tener que hacer cambio o recarga de baterías.
+
+%Esto es posible debido a que, al aplicar el destilamiento de conocimientos, la red resultante es mucho más ligera y simple, disminuyendo por mucho la cantidad de operaciones que el sistema necesita realizar al hacer una inferencia, disminuyendo así tanto el tiempo de ejecución como el consumo de energía. 
+
+
+
+
+\newpage
+\espacioSeccion
+\section{Antecedentes}
+%Es necesario que el estudiante fundamente la teoría a utilizar, para ello deberá hacer una revisión bibliográfica de corte técnico.
+%En esta sección el estudiante describe brevemente las diferentes teorías relacionadas existentes sobre el tema del proyecto, esto permitirá al estudiante contar con un punto de vista conceptual.
+
+
+
+
+
+
+\newpage
+\espacioSeccion
+\section{Metodología}
+
+
+\newpage
+\espacioSeccion
+\section{Resultados}
+%Cuando haya terminado su proyecto, es necesario:
+%Organizar y estructurar la información que se ha generado.
+%Evaluar los resultados obtenidos.
+%Analizar y discutir los resultados con su(s) Tutor (es).
+
+%En esta sección el estudiante presenta y analiza los resultados de su proyecto:
+%\begin{enumerate}
+    %\item Verifica sus resultados, es decir comprueba cuales fueron sus resultados obtenidos de una manera objetiva sin hacer juicio de valor.
+    %\item Comprueba los resultados reales con los previstos, compara lo que se hizo realmente con lo que se preveía conseguir, sin intentar explicar los desajustes.
+    %\item Análisis de resultados, explica las razones o factores que provocaron las posibles desviaciones entre lo real y lo previsto, si el objetivo fue cumplido y se llegó a la solución del problema.
+%\end{enumerate}
+
+%Se podrán mostrar tablas y gráficas donde se identifiquen los principales resultados de las pruebas aplicadas que posibiliten ilustrar resultados.
+
+
+
+\newpage
+\espacioSeccion
+\section{Conclusiones}
+%Constituye la parte final del Proyecto Terminal, cuyo objetivo es ofrecer una apreciación global de fortalezas y debilidades del proyecto.
+%El alumno da respuesta al problema planteado, con un resumen de lo realizado, resaltando los hallazgos más importantes y haciendo una valoración de los objetivos para identificar si se cumplieron o no.
+%Puede proponer recomendaciones y propuestas de mejora derivadas de su proyecto.
+
+
+\newpage
+\espacioSeccion
+\section{Bibliografía}
+%Aquí se anotan los datos que permiten identificar las fuentes documentales a utilizar en el desarrollo del proyecto de acuerdo a lineamientos de APA. Las fuentes más usuales son las
+%siguientes:
+
+%Referencias: Citar la lista de referencias consultadas y comentadas en el informe presentado.
+%Libro: incluye autor, título, edición, lugar de la edición, fecha de la edición y página.
+%Anexos o apéndices: corresponde toda la información que ayuda a profundizar y que sirvió de apoyo en el tema.
+
+\nocite{*}
+\printbibliography[heading=none]
+
+\newpage
+\espacioSeccion
+\section{Anexos}
+
+
+
+\end{document}
