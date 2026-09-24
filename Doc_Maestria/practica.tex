@@ -326,6 +326,26 @@ Realizar la implementación de una red neuronal destilada para la clasificación
 %Es necesario que el estudiante fundamente la teoría a utilizar, para ello deberá hacer una revisión bibliográfica de corte técnico.
 %En esta sección el estudiante describe brevemente las diferentes teorías relacionadas existentes sobre el tema del proyecto, esto permitirá al estudiante contar con un punto de vista conceptual.
 
+\textbf{2005 - 2016}: \\ 
+Se usa hardware optico y adaptación directa de priors atmosfericos terrestres.\\
+Tiene problemas por absorción de los canales de color.
+
+\textbf{2017 - 2019}: \\ 
+Modelado de la attenuación de la luz segun la longitud de onda y curvas de Haze-lines, Se emplearon la estimacion de profundidad por desenfoque y absorcion (IBLA)\\
+
+Hay una ineficciencia severa en regiones sin textura(en zonas donde nos e puede estimar la profundidad), y hay una clasificación demaciado rigida para ser usada en cuerpos de agua reales y cambiantes.
+
+\textbf{2020 - 2023}: \\ 
+Desaclopamiento de fenomenos, balance cromatico adaptativo, perdida de color. Se usa la estimación de \textit{backscatter} mediante pixeles obscuros adaptativos. Modelos MCLA sustentados en la Ley de Lambert-Beer. El balance de color adaptativo en espacios cromaticos.\\
+
+Hay una corrección deficiente ante iluminación artificial severa, muy usada en ROVs y AUVs, ademas de generación de artefactos en regiones obscuras o sobrecompensados en el canal rojo.
+
+
+\textbf{2024 - 2025}: \\ 
+Usa redes neuronales profundas, con restricciones fisicas al medio acuatico, emplean clasificación por factor de riesgo de sesgo cromatico y filtrado homomorfico. Transformers con priors integrados para el balance de color. Modelos heuristicos avanzados.\\
+
+Tiene un gran coste computaciónal, lo cual hace mas compleja o impide totalmente su uso en tiempo real en sistemas embebidos en ROVs y AUVs, ademas de que depende mucho del dataset del entrenamiento.
+
 
 
 
