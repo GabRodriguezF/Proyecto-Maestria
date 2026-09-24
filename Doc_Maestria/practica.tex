@@ -10,8 +10,8 @@
 % --- TIPOGRAFÍA (Times New Roman para el cuerpo) ---
 \usepackage{mathptmx} 
 
-% --- MÁRGENES (Exactamente los solicitados) ---
-\usepackage[left=3cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+% --- MÁRGENES ---
+\usepackage[left=4cm, right=3cm, top=3cm, bottom=3cm]{geometry}
 
 % --- INTERLINEADO ---
 \usepackage{setspace}
@@ -293,18 +293,8 @@ submarinos.
 %Verbo en infinitivo + objeto directo + complementos circunstanciales.
 
 \subsection{Objetivo General}
-%Implementar una red destilada para la clasificación de señalamientos en entornos sumergidos.
-
-Realizar la implementación de una red neuronal destilada para la clasificación de señalamientos en entornos sumergidos, utilizando la arquitectura de un ROV académico previamente desarrollado, con el propósito de mejorar el sistema de control del mismo.
 
 \subsection{Objetivos Específicos}
-\begin{enumerate}
-    \item Realizar la creación de una interfaz para el control y monitoreo del ROV.
-    \item Realizar la creación de un controlador PID para la variable de la profundidad.
-    \item Desarrollar la arquitectura de la red neuronal estudiante y la destilación de conocimientos de la red neuronal maestro. 
-    \item Realizar un proceso de validación del proceso de destilamiento de conocimiento en la red estudiante.
-    \item Realizar pruebas en alberca de ambas redes para comparar su desempeño.
-\end{enumerate}
 
 \newpage
 \espacioSeccion
@@ -325,6 +315,10 @@ Realizar la implementación de una red neuronal destilada para la clasificación
 \section{Antecedentes}
 %Es necesario que el estudiante fundamente la teoría a utilizar, para ello deberá hacer una revisión bibliográfica de corte técnico.
 %En esta sección el estudiante describe brevemente las diferentes teorías relacionadas existentes sobre el tema del proyecto, esto permitirá al estudiante contar con un punto de vista conceptual.
+
+Para la calibración de camaras subacuaticas, es necesario modelar la refraccion en agua-vidrio-aire, la disrcion de la imagen por el lente, factores ambientales como temperatura, salinidad, color, iluminación. En general la mayoria de los metodos actuales se centran en la corrección geometrica por refracción como la calibración de zhang \parencite{calZhang}, a diferencia de la integración de efectos termicos y de color \parencite{11176009}.
+
+
 
 \textbf{2005 - 2016}: \\ 
 Se usa hardware optico y adaptación directa de priors atmosfericos terrestres.\\
