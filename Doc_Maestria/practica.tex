@@ -20,6 +20,8 @@
 % --- ELEMENTOS GRÁFICOS Y TABLAS ---
 \usepackage{graphicx}
 \usepackage{amssymb,amsmath}
+\usepackage{booktabs}
+\usepackage{tabularx}
 \usepackage{caption}
 \usepackage{float}
 \usepackage{placeins}
@@ -355,6 +357,43 @@ Otra red \textit{end-to-end} añadió el enfoque de desenfoque a la base sintét
 En estos años se dejó de tratar la restauración como algo desconocido, y las redes empezó a ser diseñadas según la física por canal. \textit{Deep WaveNet} menciono que las imágenes subacuáticas requieren tamaños de contexto distintos por canal, esto es porque la atenuación de la longitud de onda es asimétrica, además incorporo \textit{skip connections atentas} para refinar ciertos rasgos multicontexto \parencite{10.1145/3511021}. Él señalaba que reutilizar CNN que eran para entornos terrestres sin rediseño para entornos subacuáticos produce artefactos y color distorsionado.
 
 Otros métodos también fueron surgiendo, como algunos que estiman la profundidad, el \textit{backscatter}, la iluminación y coeficientes de atenuación, esto con módulos neuronales o semi neuronales. Por ejemplo tenemos el trabajo de Zhou, que empleo prior de pixel oscuro adaptativo, combinó el modelo de formación de imagen, \textit{Channel Intensity Prior}, la eliminación de \textit{backscatter}, y una etapa no supervisada para reducir los efectos de usar luz artificial \parencite{Zhou2025}. Otro modelo uso 2 etapas para estimar el coeficiente de atenuación, esto para guiar la restauración horizontal, luego usó un bloque de atención por prior de atenuación para recalibrar los mapas RGB en la disposición vertical \parencite{9311705}. Al mismo tiempo, un campo de reflectancia neuronal, aprendió conjuntamente el color verdadero, la atenuación y el \textit{backscatter} desde múltiples vistas, como la iluminación \textit{onboard} de robots, esto sin depender de pre-entrenamiento o de mapas de profundidad obtenidos previamente \parencite{10225666}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Papers y variables usadas por redes neuronales.}
+  \label{tab:estado_del_arte}
+  \small
+  \begin{tabularx}{\textwidth}{c l X X}
+    \toprule
+    \textbf{Año} & \textbf{Paper} & \textbf{Parte de interés} & \textbf{Variables tratadas} \\
+    \midrule
+    2017 & \textbf{WaterGAN} & Síntesis GAN + corrección monocular & profundidad, color, scattering, tipo de agua \parencite{7995024} \\
+    \addlinespace
+    2020 & \textbf{UWCNN} & Reconstrucción directa con prior submarino & color, scattering, absorción, tipo de agua \parencite{LI2020107038} \\
+    \addlinespace
+    2021 & \textbf{Deep WaveNet} & Receptive fields por longitud de onda & color por canal, contexto multiescala \parencite{10.1145/3511021} \\
+    \addlinespace
+    2023 & \textbf{NeRF Underwater} & Aprende escena y agua conjuntamente & backscatter, atenuación, iluminación, geometría \parencite{10225666} \\
+    \addlinespace
+    2023 & \textbf{ADP + CIP} & Modelo físico + estimación no supervisada & profundidad, backscatter, luz artificial, balance azul-verde \parencite{Zhou2025} \\
+    \addlinespace
+    2024 & \textbf{DDM + UIEConv} & Estima parámetros físicos con subredes & profundidad, veiling light, atenuación/scattering \parencite{11435170} \\
+    \addlinespace
+    2024 & \textbf{Implicit Stereo Calibration} & Calibración implícita por regresión & profundidad, refracción, aberración espacial, postura, 3D \parencite{Meng:24} \\
+    \addlinespace
+    2024 & \textbf{FNN + SfM-MVS} & Calibración cromática auto-adaptativa & color, profundidad, iluminación por estrobos \parencite{rs16071279} \\
+    \addlinespace
+    2025 & \textbf{Probabilistic Measurement Net} & Mejora imagen para calibración y medición & color, contraste, nitidez, distorsión \parencite{Zhou2025Probabilistic} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\textbf{2024 - 2025}: \\ 
+En estos años el restaurar la imagen ya no es lo único que se buscaba, sino que se empezó a calibrar la cámara directamente usando redes neuronales. En 2024 un marco que fue guiado por un modelo físico de 2024 entrenó subredes separadas con el propósito de estimar la profundidad, \textit{veiling light} y coeficientes de atenuación/\textit{scattering}, esto fue por qué trabajos anteriores fallaban porque se invertía mucho en modelos físicos demasiado idealizados, o porque estimaban mal los parámetros anteriores \parencite{11435170}.
+
+Específicamente en la calibración geométrica, actualmente hay 2 líneas de desarrollo, la primera usa una CNN sobre unas imágenes en el tablero para estimar directamente la matriz de calibración en agua limpia, verde y azul, obteniendo mejores resultados que Zhang y Bouguet, aparte de que valido en reconstrucción 3D \parencite{10772075}. La otra línea, en cambio, propone una calibración implícita estéreo, con una red de regresión por coordenadas y diana autoiluminada, superando a métodos explícitos en medición, postura y reconstrucción 3D \parencite{Meng:24}. Existe un tercer trabajo que vincula la mejora neuronal de placas de calibración con error de re-proyección y precisa de medida, esta tiene mejor desempeño que la calibración implícita basada en datos \parencite{Zhou2025Probabilistic}.
+
+Para la calibración de color también se volvió más geométrico. Hay un método auto-adaptativo para aguas profundas que usa mapas de profundidad generados por SfM-MVS, zonas bien iluminadas y una FNN para restaurar el color sin tener que usar cartas de color ni información del ambiente de manera precisa, esto siempre y cuando la configuración de la cámara-luz se mantenga estable \parencite{rs16071279}.
 
 
 
