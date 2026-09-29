@@ -334,11 +334,11 @@ Hay una ineficciencia severa en regiones sin textura(en zonas donde nos e puede 
 \textbf{2020 - 2023}: \\ 
 Desaclopamiento de fenomenos, balance cromatico adaptativo, perdida de color. Se usa la estimación de \textit{backscatter} mediante pixeles obscuros adaptativos. Modelos MCLA sustentados en la Ley de Lambert-Beer. El balance de color adaptativo en espacios cromaticos.\\
 
-Hay una corrección deficiente ante iluminación artificial severa, muy usada en ROVs y AUVs, ademas de generación de artefactos en regiones obscuras o sobrecompensados en el canal rojo.
+Hay una corrección deficiente ante iluminación artificial severa, muy usada en ROVs y AUVs, ademas de generación de artefactos en regiones obscuras o sobre-compensados en el canal rojo.
 
 
 \textbf{2024 - 2025}: \\ 
-Usa redes neuronales profundas, con restricciones físicas al medio acuático, emplean clasificación por factor de riesgo de sesgo cromático y filtrado homomorfico. Transformers con priors integrados para el balance de color. Modelos heuristicos avanzados.\\
+Usa redes neuronales profundas, con restricciones físicas al medio acuático, emplean clasificación por factor de riesgo de sesgo cromático y filtrado homomórfico. Transformers con priors integrados para el balance de color. Modelos heurísticos avanzados.\\
 
 Tiene un gran coste computacional, lo cual hace más compleja o impide totalmente su uso en tiempo real en sistemas embebidos en ROVs y AUVs, además de que depende mucho del dataset del entrenamiento.
 
@@ -393,7 +393,7 @@ En estos años el restaurar la imagen ya no es lo único que se buscaba, sino qu
 
 Específicamente en la calibración geométrica, actualmente hay 2 líneas de desarrollo, la primera usa una CNN sobre unas imágenes en el tablero para estimar directamente la matriz de calibración en agua limpia, verde y azul, obteniendo mejores resultados que Zhang y Bouguet, aparte de que valido en reconstrucción 3D \parencite{10772075}. La otra línea, en cambio, propone una calibración implícita estéreo, con una red de regresión por coordenadas y diana autoiluminada, superando a métodos explícitos en medición, postura y reconstrucción 3D \parencite{Meng:24}. Existe un tercer trabajo que vincula la mejora neuronal de placas de calibración con error de re-proyección y precisa de medida, esta tiene mejor desempeño que la calibración implícita basada en datos \parencite{Zhou2025Probabilistic}.
 
-Para la calibración de color también se volvió más geométrico. Hay un método auto-adaptativo para aguas profundas que usa mapas de profundidad generados por SfM-MVS, zonas bien iluminadas y una FNN para restaurar el color sin tener que usar cartas de color ni información del ambiente de manera precisa, esto siempre y cuando la configuración de la cámara-luz se mantenga estable \parencite{rs16071279}.
+Para la calibración de color también se volvió más geométrico. Hay un método auto-adaptativo para aguas profundas que usa mapas de profundidad generados por SfM-MVS, zonas bien iluminadas y una FNN para restaurar el color sin tener que usar cartas de color ni información del ambiente de manera precisa, esto siempre y cuando la configuración de la cámara-luz se mantenga estable \parencite{rs16071279}. Este sistema aunque ya está más cerca de una calibración operativa, aun sigue dependiendo de solape suficiente y de que algunas regiones funcionen como \textit{pseudo-ground-truth} Cromático.
 
 
 
