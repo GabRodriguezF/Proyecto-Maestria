@@ -11,11 +11,19 @@
 \usepackage{mathptmx} 
 
 % --- MÁRGENES ---
-\usepackage[left=4cm, right=3cm, top=3cm, bottom=3cm]{geometry}
+\usepackage[letterpaper,
+            top=3cm,
+            bottom=3cm,
+            right=3cm,
+            left=4cm]{geometry}
 
 % --- INTERLINEADO ---
 \usepackage{setspace}
-\onehalfspacing % Espacio y medio (1.5)
+\setstretch{1.2}
+
+% --- SANGRÍA (Punto 3 del reglamento: 0.75 cm) ---
+\setlength{\parindent}{0.75cm}
+\setlength{\parskip}{0pt} % El espaciado entre párrafos se maneja con la sangría
 
 % --- ELEMENTOS GRÁFICOS Y TABLAS ---
 \usepackage{graphicx}
@@ -26,8 +34,10 @@
 \usepackage{float}
 \usepackage{placeins}
 \usepackage{adjustbox}
-\usepackage{amsmath}
 \usepackage{pdfpages}
+
+% Configuración del tamaño de fuente a 11pt para pies de figuras y tablas
+\captionsetup{font={small}} % 'small' equivale a 11pt en una clase de 12pt
 
 % --- LISTADOS DE CÓDIGO ---
 \usepackage{listings}
@@ -88,10 +98,6 @@
 \renewcommand\lstlistlistingname{Índice de listados}
 \renewcommand\lstlistingname{Listado}
 
-% --- SANGRÍA Y ESPACIADO ENTRE PÁRRAFOS ---
-\setlength{\parindent}{0pt} % Primera línea de cada párrafo inicia al margen
-\setlength{\parskip}{1.25em}    % Separación limpia entre párrafos ante la falta de sangría
-
 % --- CONFIGURACIÓN DE ENCABEZADOS (FORMATO APA SIN NUMERACIÓN) ---
 \usepackage{titlesec}
 
@@ -121,16 +127,19 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} 
-\fancyfoot[R]{\thepage} % Número de página en la esquina derecha inferior
-\renewcommand{\headrulewidth}{0pt} % Sin líneas en el encabezado
+\fancyfoot[R]{\thepage} % Número de página en esquina inferior derecha
+\renewcommand{\headrulewidth}{0pt}
 
 % Comando para dejar los dos espacios requeridos tras el margen superior al inicio de sección
 \newcommand{\espacioSeccion}{\vspace*{2\baselineskip}}
 
-% --- BIBLIOGRAFÍA EN FORMATO APA ---
-\usepackage{csquotes} % Necesario para citas en español con biblatex
+% --- BIBLIOGRAFÍA EN FORMATO APA (Punto 6 del reglamento) ---
+\usepackage{csquotes}
 \usepackage[style=apa, backend=biber]{biblatex}
 \addbibresource{referencias.bib}
+
+% --- APÉNDICES (Punto 7 del reglamento) ---
+\usepackage[toc,page,title,titletoc]{appendix}
 
 \begin{document}
 
@@ -257,9 +266,6 @@
 %\espacioSeccion
 %\lstlistoflistings
 
-% =========================================================
-% CUERPO DEL TRABAJO (Números Arábigos y salto de página obligado)
-% =========================================================
 \cleardoublepage
 \pagenumbering{arabic} % Reinicia paginación a números arábigos (1, 2, 3...)
 
@@ -318,43 +324,31 @@ submarinos.
 %Es necesario que el estudiante fundamente la teoría a utilizar, para ello deberá hacer una revisión bibliográfica de corte técnico.
 %En esta sección el estudiante describe brevemente las diferentes teorías relacionadas existentes sobre el tema del proyecto, esto permitirá al estudiante contar con un punto de vista conceptual.
 
-Para la calibración de camaras subacuaticas, es necesario modelar la refraccion en agua-vidrio-aire, la disrcion de la imagen por el lente, factores ambientales como temperatura, salinidad, color, iluminación. En general la mayoria de los metodos actuales se centran en la corrección geometrica por refracción como la calibración de zhang \parencite{calZhang}, a diferencia de la integración de efectos termicos y de color \parencite{11176009}.
+La visión subacuática tiene 2 principales desafíos, la distorsión geométrica causada por la refracción en el agua-vidrio-aire que tiene la cámara, y la degradación radiométrica, que es el color, contraste, entre otras. Esta es principalmente provocada porque el agua absorbe y dispersa la luz que recibe. Desde hace muchos años la calibración de las cámaras que se usan en entornos submarinos se realizó con modelos geométricos rígidos, que estaban centrados en la corrección por refracción, como por ejemplo el método de Zhang \parencite{calZhang}. Pero estos enfoques no tienen en cuenta otros factores ambientales, como la temperatura, la salinidad, la iluminación, o incluso la interacción de la luz con el medio en sí \parencite{11176009}. Con el paso de los años estos métodos de restauración y calibración han avanzado a través de modelos físicos orientados a la física del medio, y más reciente, usando inteligencia artificial y redes neuronales.
+
+\subsection*{Evolución de los Modelos Físicos y Métodos Tradicionales}
+
+Entre \textbf{2005 - 2016} los primeros acercamientos fueron usando hardware óptico especializado, o de la adaptación directa de priors atmosféricos terrestres (el \textit{Dark Channel Prior}) \parencite{rs15194699} \parencite{Ke_2023}. Estos funcionaban en entornos controlados, pero tenían muchas limitaciones, los priors terrestres fallaban por la absorción dependiente de la longitud de onda y la arena brillante \parencite{9020130}.
+
+Después, entre \textbf{2017 - 2019} se empezó a introducir el modelado explícito de la atenuación espectral mediante curvas de Haze-Lines y métodos de estimación de profundidad por desenfoque y absorción(IBLA) \parencite{rs15194699} \parencite{Ke_2023}. Esto permitió considerar la degradación por longitud de onda, tenían problemas e ineficiencias en zonas marinas sin textura (zonas donde no se puede estimar la profundidad), aparte de que tienen una calcificación muy rígida para poder ser usada en cuerpos de agua reales y cambiantes \parencite{Ke_2023} \parencite{9020130}.
+
+Entre \textbf{2020 - 2023} se centraron más en investigar el desacoplamiento de fenómenos ópticos. Para ello se incorporó el balance cromático adaptativo en diversos espacios de color, también la estimación del \textit{backscatter} mediante píxeles obscuros adaptativos, modelos MCLA con ley de Lambert-Beer \parencite{10216333} y balance adaptativo en espacios \textit{Lab y CIE L*a*b*} \parencite{rs15194699}. Los resultados tuvieron mayor fidelidad en la restauración, pero tenían una corrección deficiente cuando se usaba iluminación artificial severa, que es muy usada en ROVs y AUVs, además generaba artefactos en regiones obscuras o sobrecompensación en el canal rojo.
 
 
+En los años \textbf{2024 - 2025} surgieron modelos heurísticos avanzados (MJPNet) \parencite{10798483} y filtros homomórficos acoplados a restricciones físicas con clasificación por factor de riesgo de sesgo cromático \parencite{ZHANG2025108826}, la complejidad, consumo computacional, y rigidez por la dependencia de datasets de entrenamiento causo que sea complicado usarlos en entornos reales sobre todo en sistemas embebidos de AUVs y ROVs en tiempo real.
 
-\textbf{2005 - 2016}: \\ 
-Se usa hardware optico y adaptación directa de priors atmosfericos terrestres.\\
-Tiene problemas por absorción de los canales de color.
+\subsection*{Evolución de los Modelos de Inteligencia Artificial y Redes Neuronales}
 
-\textbf{2017 - 2019}: \\ 
-Modelado de la attenuación de la luz segun la longitud de onda y curvas de Haze-lines, Se emplearon la estimacion de profundidad por desenfoque y absorcion (IBLA)\\
-
-Hay una ineficciencia severa en regiones sin textura(en zonas donde nos e puede estimar la profundidad), y hay una clasificación demaciado rigida para ser usada en cuerpos de agua reales y cambiantes.
-
-\textbf{2020 - 2023}: \\ 
-Desaclopamiento de fenomenos, balance cromatico adaptativo, perdida de color. Se usa la estimación de \textit{backscatter} mediante pixeles obscuros adaptativos. Modelos MCLA sustentados en la Ley de Lambert-Beer. El balance de color adaptativo en espacios cromaticos.\\
-
-Hay una corrección deficiente ante iluminación artificial severa, muy usada en ROVs y AUVs, ademas de generación de artefactos en regiones obscuras o sobre-compensados en el canal rojo.
+Las redes neuronales inicialmente fueron empleadas para mejorar el color e imagen obtenida, poco tiempo después empezaron a calibrar las cámaras directamente, siguiendo una trayectoria de 3 fases: primero se emplearon para mejorar las imágenes degradadas, después se emplearon modelos híbridos, que estiman las variables físicas  como la profundidad, la transmisión y el \textit{backscatter}, y finalmente recientemente, las redes aplican una calibración implícita o directa. 
 
 
-\textbf{2024 - 2025}: \\ 
-Usa redes neuronales profundas, con restricciones físicas al medio acuático, emplean clasificación por factor de riesgo de sesgo cromático y filtrado homomórfico. Transformers con priors integrados para el balance de color. Modelos heurísticos avanzados.\\
+En los años \textbf{2017 - 2020} el problema que existía para poder emplear redes neuronales, fue la falta de ground truth submarino, \textit{WaterGAN} generó imágenes subacuáticas de manera sintética, usando pares RGB-D en aire y con ello aprendió una corrección de color monocular en 2 etapas, esta fue validada en un tanque de agua, así como en campo \parencite{7995024}.\\
 
-Tiene un gran coste computacional, lo cual hace más compleja o impide totalmente su uso en tiempo real en sistemas embebidos en ROVs y AUVs, además de que depende mucho del dataset del entrenamiento.
-
-
-Las redes neuronales inicialmente fueron empleadas para mejorar el color e imagen obtenida, poco tiempo después empezaron a calibrar las cámaras directamente, siguiendo una trayectoria de 3 fases: primero se emplearon para mejorar las imágenes degradadas, después se emplearon modelos híbridos, que estiman las variables físicas  como la profundidad, la transmisión y el backscatter, y finalmente recientemente, las redes aplican una calibración implícita o directa. 
-
-
-\textbf{2017 - 2020}: \\ 
-El problema que existía para poder emplear redes neuronales, fue la falta de ground truth submarino, \textit{WaterGAN} generó imágenes subacuáticas de manera sintética, usando pares RGB-D en aire y con ello aprendió una corrección de color monocular en 2 etapas, esta fue validada en un tanque de agua, así como en campo \parencite{7995024}.\\
-
-En \textbf{2018-2020}, redes como CNN y redes residuales aparte de corregir el color, también lo hacían para \textit{de-scattering}, \textit{blur} y profundidad. En imágenes con baja iluminación, una CNN usó una estimación de profundidad y corrección espectral para compensar el \textit{scattering} y la perdida cromática \parencite{LU2018142}. La red UWCNN directamente empezó a hacer reconstrucción directa de la imagen latente, esta fue entrenada con datos sintéticos basados en un modelo básico, y distintos tipos de agua \parencite{LI2020107038}.
+En \textbf{2018-2020} redes como CNN y redes residuales aparte de corregir el color, también lo hacían para \textit{de-scattering}, \textit{blur} y profundidad. En imágenes con baja iluminación, una CNN usó una estimación de profundidad y corrección espectral para compensar el \textit{scattering} y la perdida cromática \parencite{LU2018142}. La red UWCNN directamente empezó a hacer reconstrucción directa de la imagen latente, esta fue entrenada con datos sintéticos basados en un modelo básico, y distintos tipos de agua \parencite{LI2020107038}.
 
 Otra red \textit{end-to-end} añadió el enfoque de desenfoque a la base sintética debido a que la bases anteriores solo consideraban el \textit{scattering} y la atenuación \parencite{9072473}.
 
-\textbf{2021 - 2023}: \\ 
-En estos años se dejó de tratar la restauración como algo desconocido, y las redes empezó a ser diseñadas según la física por canal. \textit{Deep WaveNet} menciono que las imágenes subacuáticas requieren tamaños de contexto distintos por canal, esto es porque la atenuación de la longitud de onda es asimétrica, además incorporo \textit{skip connections atentas} para refinar ciertos rasgos multicontexto \parencite{10.1145/3511021}. Él señalaba que reutilizar CNN que eran para entornos terrestres sin rediseño para entornos subacuáticos produce artefactos y color distorsionado.
+Durante los años \textbf{2021 - 2023} se dejó de tratar la restauración como algo desconocido, y las redes empezó a ser diseñadas según la física por canal. \textit{Deep WaveNet} menciono que las imágenes subacuáticas requieren tamaños de contexto distintos por canal, esto es porque la atenuación de la longitud de onda es asimétrica, además incorporo \textit{skip connections atentas} para refinar ciertos rasgos multicontexto \parencite{10.1145/3511021}. Él señalaba que reutilizar CNN que eran para entornos terrestres sin rediseño para entornos subacuáticos produce artefactos y color distorsionado.
 
 Otros métodos también fueron surgiendo, como algunos que estiman la profundidad, el \textit{backscatter}, la iluminación y coeficientes de atenuación, esto con módulos neuronales o semi neuronales. Por ejemplo tenemos el trabajo de Zhou, que empleo prior de pixel oscuro adaptativo, combinó el modelo de formación de imagen, \textit{Channel Intensity Prior}, la eliminación de \textit{backscatter}, y una etapa no supervisada para reducir los efectos de usar luz artificial \parencite{Zhou2025}. Otro modelo uso 2 etapas para estimar el coeficiente de atenuación, esto para guiar la restauración horizontal, luego usó un bloque de atención por prior de atenuación para recalibrar los mapas RGB en la disposición vertical \parencite{9311705}. Al mismo tiempo, un campo de reflectancia neuronal, aprendió conjuntamente el color verdadero, la atenuación y el \textit{backscatter} desde múltiples vistas, como la iluminación \textit{onboard} de robots, esto sin depender de pre-entrenamiento o de mapas de profundidad obtenidos previamente \parencite{10225666}.
 
@@ -388,15 +382,11 @@ Otros métodos también fueron surgiendo, como algunos que estiman la profundida
   \end{tabularx}
 \end{table}
 
-\textbf{2024 - 2025}: \\ 
-En estos años el restaurar la imagen ya no es lo único que se buscaba, sino que se empezó a calibrar la cámara directamente usando redes neuronales. En 2024 un marco que fue guiado por un modelo físico de 2024 entrenó subredes separadas con el propósito de estimar la profundidad, \textit{veiling light} y coeficientes de atenuación/\textit{scattering}, esto fue por qué trabajos anteriores fallaban porque se invertía mucho en modelos físicos demasiado idealizados, o porque estimaban mal los parámetros anteriores \parencite{11435170}.
+Finalmente, durante \textbf{2024 - 2025} el restaurar la imagen ya no es lo único que se buscaba, sino que se empezó a calibrar la cámara directamente usando redes neuronales. En 2024 un marco que fue guiado por un modelo físico de 2024 entrenó subredes separadas con el propósito de estimar la profundidad, \textit{veiling light} y coeficientes de atenuación/\textit{scattering}, esto fue por qué trabajos anteriores fallaban porque se invertía mucho en modelos físicos demasiado idealizados, o porque estimaban mal los parámetros anteriores \parencite{11435170}.
 
 Específicamente en la calibración geométrica, actualmente hay 2 líneas de desarrollo, la primera usa una CNN sobre unas imágenes en el tablero para estimar directamente la matriz de calibración en agua limpia, verde y azul, obteniendo mejores resultados que Zhang y Bouguet, aparte de que valido en reconstrucción 3D \parencite{10772075}. La otra línea, en cambio, propone una calibración implícita estéreo, con una red de regresión por coordenadas y diana autoiluminada, superando a métodos explícitos en medición, postura y reconstrucción 3D \parencite{Meng:24}. Existe un tercer trabajo que vincula la mejora neuronal de placas de calibración con error de re-proyección y precisa de medida, esta tiene mejor desempeño que la calibración implícita basada en datos \parencite{Zhou2025Probabilistic}.
 
 Para la calibración de color también se volvió más geométrico. Hay un método auto-adaptativo para aguas profundas que usa mapas de profundidad generados por SfM-MVS, zonas bien iluminadas y una FNN para restaurar el color sin tener que usar cartas de color ni información del ambiente de manera precisa, esto siempre y cuando la configuración de la cámara-luz se mantenga estable \parencite{rs16071279}. Este sistema aunque ya está más cerca de una calibración operativa, aun sigue dependiendo de solape suficiente y de que algunas regiones funcionen como \textit{pseudo-ground-truth} Cromático.
-
-
-
 
 
 \newpage
