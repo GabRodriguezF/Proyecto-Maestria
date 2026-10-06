@@ -1,29 +1,27 @@
 %LTeX: language=es
-\documentclass[12pt,letterpaper,spanish,twoside]{article} % Impresión por ambos lados (twoside)
+\documentclass[12pt,letterpaper,spanish,twoside,openright]{report}
 
 % --- PAQUETES BÁSICOS Y IDIOMA ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[spanish,es-tabla]{babel} % Ajusta tablas según normas en español
+\usepackage[spanish,es-tabla]{babel}
 
 
 % --- TIPOGRAFÍA (Times New Roman para el cuerpo) ---
 \usepackage{mathptmx} 
 
-% --- MÁRGENES ---
+% --- MÁRGENES Y FORMATO (Punto 1 y 2 del reglamento) ---
 \usepackage[letterpaper,
-            top=3cm,
-            bottom=3cm,
-            right=3cm,
-            left=4cm]{geometry}
+            top=3.0cm,
+            bottom=3.0cm,
+            right=3.0cm,
+            left=4.0cm]{geometry} % 4.0 cm izquierdo para encuadernación
 
-% --- INTERLINEADO ---
+% --- INTERLINEADO Y SANGRÍA (Puntos 2 y 3 del reglamento) ---
 \usepackage{setspace}
-\setstretch{1.2}
-
-% --- SANGRÍA (Punto 3 del reglamento: 0.75 cm) ---
-\setlength{\parindent}{0.75cm}
-\setlength{\parskip}{0pt} % El espaciado entre párrafos se maneja con la sangría
+\setstretch{1.2} % Interlineado de 1.2
+\setlength{\parindent}{0.75cm} % Sangría de 0.75 cm
+\setlength{\parskip}{0pt}
 
 % --- ELEMENTOS GRÁFICOS Y TABLAS ---
 \usepackage{graphicx}
@@ -35,9 +33,10 @@
 \usepackage{placeins}
 \usepackage{adjustbox}
 \usepackage{pdfpages}
+\usepackage{verbatim}
 
-% Configuración del tamaño de fuente a 11pt para pies de figuras y tablas
-\captionsetup{font={small}} % 'small' equivale a 11pt en una clase de 12pt
+% Configuración del tamaño de fuente a 11pt para pies de figuras y tablas (Punto 2)
+\captionsetup{font={small}}
 
 % --- LISTADOS DE CÓDIGO ---
 \usepackage{listings}
@@ -53,81 +52,54 @@
 \renewcommand{\algorithmicensure}{\textbf{Salida:}}
 \renewcommand{\algorithmiccomment}[1]{\hfill\textcolor{gray}{\small $\triangleright$ #1}}
 
-\lstdefinestyle{MatlabIEEE}{
-    language=Matlab,
-    basicstyle=\ttfamily\scriptsize,
-    numbers=none,
-    backgroundcolor=\color{gray!5},
-    frame=single,
-    rulecolor=\color{black!30},
-    tabsize=3,
-    showstringspaces=false,
-    breaklines=true,
-    breakatwhitespace=true,
-    keywordstyle=\color{blue}\bfseries,
-    commentstyle=\color{green!40!black}\itshape,
-    stringstyle=\color{purple},
-    captionpos=b,
-    aboveskip=1em,
-    belowskip=1em,
-}
-
-% Configuración del estilo de código
 \lstdefinestyle{pseudocodigo}{
-    backgroundcolor=\color{gray!10},   % Fondo gris claro
-    basicstyle=\ttfamily\small,       % Fuente tipo máquina de escribir
-    breaklines=true,                   % Ajustar líneas largas automáticamente
-    frame=tb,                          % Línea superior e inferior
-    numbers=left,                      % Números de línea a la izquierda
-    numberstyle=\tiny\color{gray},     % Estilo de los números de línea
-    keywordstyle=\color{blue}\bfseries,% Palabras clave en azul y negrita
-    escapeinside={(*@}{@*)},           % Permite usar LaTeX/matemáticas dentro del código
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=tb,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue}\bfseries,
+    escapeinside={(*@}{@*)},
 }
 \lstset{style=pseudocodigo}
 
-\definecolor{comments}{rgb}{0,.5,0}
-\definecolor{strings}{rgb}{.75,0,0}
-\lstset{basicstyle=\scriptsize,
-        language=Matlab,
-        stringstyle=\rmfamily\color{strings},
-        showstringspaces = false,
-        commentstyle=\color{comments}\textsl,
-        emph = {for,end,if,while,case,function},
-        emphstyle= \color{blue}\bfseries}
-        
 \renewcommand\lstlistlistingname{Índice de listados}
 \renewcommand\lstlistingname{Listado}
 
-% --- CONFIGURACIÓN DE ENCABEZADOS (FORMATO APA SIN NUMERACIÓN) ---
+% --- CONFIGURACIÓN DE ENCABEZADOS Y TÍTULOS (Punto 5 del reglamento) ---
 \usepackage{titlesec}
 
-% Nivel 1: Centrado, negrita, tamaño 14
+\newcommand{\sizeChapter}{\fontsize{28}{34}\selectfont}
+\newcommand{\sizeSection}{\fontsize{22}{26}\selectfont}
+
+% Formato del Capítulo: 28pt negrita, espacio anterior 168pt, posterior 84pt
+\titleformat{\chapter}[hang]
+  {\normalfont\sizeChapter\bfseries}
+  {\thechapter\quad}{0pt}{}
+%\titlespacing*{\chapter}{0pt}{168pt}{84pt}
+\titlespacing*{\chapter}{0pt}{83pt}{42pt}
+
+% Formato de Sección y Subsección: 22pt negrita, espacio anterior 36pt, posterior 24pt
 \titleformat{\section}
-  {\normalfont\large\bfseries\filcenter}{}{0em}{}
-  
-% Nivel 2: Alineado a la izquierda, negrita, tamaño 12
+  {\normalfont\sizeSection\bfseries}
+  {\thesection\quad}{0pt}{}
+\titlespacing*{\section}{0pt}{36pt}{24pt}
+
 \titleformat{\subsection}
-  {\normalfont\normalsize\bfseries}{}{0em}{}
-  
-% Nivel 3: De párrafo con sangría, negrita, mayúscula, minúscula y punto final
-\titleformat{\subsubsection}[runin]
-  {\normalfont\normalsize\bfseries\hspace*{1cm}}{}{0em}{}[.]
+  {\normalfont\sizeSection\bfseries}
+  {\thesubsection\quad}{0pt}{}
+\titlespacing*{\subsection}{0pt}{36pt}{24pt}
 
-% Nivel 4: De párrafo con sangría, negrita, cursiva y punto final
-\titleformat{\paragraph}[runin]
-  {\normalfont\normalsize\bfseries\itshape\hspace*{1cm}}{}{0em}{}[.]
-
-% Nivel 5: De párrafo con sangría, cursiva y punto final
-\titleformat{\subparagraph}[runin]
-  {\normalfont\normalsize\itshape\hspace*{1cm}}{}{0em}{}[.]
-
-\setcounter{secnumdepth}{0} % Desactiva la numeración automática de secciones de forma global
+% Habilitar la numeración profunda de secciones
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
 
 % --- CONFIGURACIÓN DE PAGINACIÓN ---
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} 
-\fancyfoot[R]{\thepage} % Número de página en esquina inferior derecha
+\fancyfoot[R]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
 
 % Comando para dejar los dos espacios requeridos tras el margen superior al inicio de sección
@@ -144,97 +116,44 @@
 \begin{document}
 
 % =========================================================
-% PORTADA 1: EXTERIOR (Color Guinda simulado, se imprime por un lado)
-% =========================================================
-%\begin{titlepage}
-%\begin{singlespace}
-%\centering
-%\sffamily % Fuente Sans-Serif para aproximar los requerimientos de la portada
-
-% Logos superiores (Reemplaza con tus archivos reales de imagen si los tienes)
-% \noindent\includegraphics[width=4cm]{logo_cidesi.png}\hfill\includegraphics[width=2.5cm]{logo_conacyt.png}
-%{\large\bfseries CIDESI \hfill POSGRADO} \\
-%\rule{\textwidth}{1pt}
-
-%\vspace{2.5cm}
-
-% Título del proyecto (Arrus BT 30 equivalente / Grande)
-%{\fontsize{26}{30}\selectfont\bfseries Redes Destiladas para Clasificación de objetos aplicadas a un ROV Académico \par}
-
-%\vspace{2cm}
-
-%{\large\bfseries Proyecto Terminal \par}
-
-%\vspace{2cm}
-
-%{\large Por \par}
-%\vspace{0.3cm}
-%{\Large\bfseries Gabriel Rodríguez Feregrino \par}
-
-%\vspace{2cm}
-
-%{\large En cumplimiento a los requerimientos para obtener el Diploma de \par}
-%\vspace{0.3cm}
-%{\large\bfseries Especialidad Tecnólogo en Mecatrónica \par}
-
-%\vfill
-
-%\begin{flushleft}
-%\large
-%\textbf{Tutor académico:} Tomas Salgado Jiménez \\
-%\textbf{Tutor en planta:} Cristian Hamilton Sánchez Saquín
-%\end{flushleft}
-
-
-%{\large Santiago de Querétaro, Qro., México, Abril 2026 \par}
-%\end{singlespace}
-%\end{titlepage}
-
-%\cleardoublepage % Forzar que la siguiente portada inicie en hoja nueva derecha
-
-% =========================================================
-% PORTADA 2: INTERIOR (Blanca, replicando la estructura del Anexo 3)
+% PORTADA INTERIOR (PICYT / CIDESI)
 % =========================================================
 \begin{titlepage}
 \begin{singlespace}
 \centering
 \sffamily 
 
-%Logos superiores
-{\large\bfseries CIDESI \hfill POSGRADO} \\
+{\large\bfseries CIDESI \hfill POSGRADO INTERINSTITUCIONAL EN CIENCIA Y TECNOLOGÍA} \\
 \rule{\textwidth}{1pt}
 
-\vspace{2.5cm}
+\vspace{2.0cm}
 
-%Título idéntico
-{\fontsize{26}{30}\selectfont\bfseries Restauración geométricamente consistente y calibración adaptativa de cámaras \par}
+{\fontsize{24}{28}\selectfont\bfseries RESTAURACIÓN GEOMÉTRICAMENTE CONSISTENTE Y CALIBRACIÓN ADAPTATIVA DE CÁMARAS SUBMARINAS \par}
 
-\vspace{2cm}
+\vspace{1.5cm}
 
-{\large\bfseries Proyecto de Investigación \par} % Variación textual del Anexo 3 para la interna
+{\large\bfseries TESIS \par}
+{\large QUE PARA OBTENER EL GRADO ACADÉMICO DE: \par}
+\vspace{0.3cm}
+{\large\bfseries MAESTRO EN CIENCIA Y TECNOLOGÍA EN MECATRÓNICA \par}
 
-\vspace{2cm}
+\vspace{1.5cm}
 
-{\large Por \par}
+{\large Presenta: \par}
 \vspace{0.3cm}
 {\Large\bfseries Gabriel Rodríguez Feregrino \par}
-
-\vspace{2cm}
-
-{\large En cumplimiento a los requerimientos para la obtención de: \par}
-\vspace{0.3cm}
-{\large\bfseries MAESTRO EN CIENCIA Y TECNOLOGÍA EN MECATRÓNICA  \par}
 
 \vfill
 
 \begin{flushleft}
 \large
-\textbf{Tutor académico:} Tomas Salgado Jiménez \\
-\textbf{Tutor en planta:} Cristian Hamilton Sánchez Saquín
+\textbf{Director de Tesis:} Dr. Tomas Salgado Jiménez \\
+\textbf{Codirector / Asesor:} M. en C. Cristian Hamilton Sánchez Saquín
 \end{flushleft}
 
+\vspace{0.5cm}
 
-{\large Santiago de Querétaro, Qro., México, Octubre 2026. \par}
+{\large Santiago de Querétaro, Qro., México, Octubre 2026 \par}
 \end{singlespace}
 \end{titlepage}
 
@@ -247,115 +166,175 @@
 % SECCIONES PRELIMINARES (Números Romanos)
 % =========================================================
 \cleardoublepage
-\pagenumbering{roman} % Comienza la numeración romana en la esquina inferior derecha
+\pagenumbering{roman}
 
-\begin{abstract}
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
 El resumen es una síntesis del trabajo final que hace hincapié en sus puntos sobresalientes.
 Toda la información que contiene la tesis debe estar comprendida en el resumen. El objetivo de incluirse es evitar que el lector tenga que leer todo el trabajo. Sin estos resúmenes, sería difícil para los profesionales mantenerse al día en su área. Por otra parte, este resumen puede lograr que el lector se motive a leer el informe completo. En cuanto a la redacción del resumen, este puede estar escrito en tiempo pasado, ya que es la historia del trabajo terminado, o en tiempo presente, ya que constituye la aportación global al área específica. Debe cuidar cada palabra que escriba. Es una síntesis de la tesis que destaca los puntos sobresalientes, donde no se incluye ninguna interpretación de la misma. La mejor manera de redactar un resumen es pensar en una llamada de larga distancia en la que usted relata a un amigo en que consiste su trabajo. El resumen debe contener entre 250 y 500 palabras, ocupando una sola página. Recuerde que debe ser breve. El resumen debe de incluir los siguientes puntos: La descripción del problema de una forma muy breve (pueden ser 2 proposiciones: una proposición antecedente y una proposición concluyente); una breve descripción de la solución; los objetivos y de una forma muy breve los resultados obtenidos.
 
+\vspace{1em}
+\noindent\textbf{Palabras clave:} Calibración submarina, visión por computadora, sistemas embebidos, variación térmica, restauración espectral.
+
 \cleardoublepage
-\end{abstract}
 
-%\espacioSeccion
-\begin{abstract}
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
 The summary synthesizes the final work that emphasizes its salient points. All the information contained in the thesis must be included in the abstract. The purpose of inclusion is to avoid the reader having to read the entire work. Without these summaries, it would be difficult for professionals to keep up-to-date in their area. On the other hand, this summary can motivate the reader to read the full report. Regarding the writing of the summary, it can be written in the past tense, since it is the history of the completed work, or in the present tense since it constitutes the global contribution to the specific area. You must take care of every word you write. It is a thesis synthesis that highlights the salient points, where no interpretation of it is included. An excellent way to write a summary is to think of a long-distance call in which you tell a friend what your job consists of. The abstract must contain between 250 and 500 words, occupying a single page. Remember to keep it brief. The abstract must include the following points: A very brief description of the problem (there can be 2 propositions: an antecedent proposition and a conclusive proposition); a brief description of the solution; the objectives and in a very brief way the results obtained.
-\end{abstract}
 
-\newpage
-\espacioSeccion
+\vspace{1em}
+\noindent\textbf{Keywords:} Underwater calibration, computer vision, embedded systems, thermal variation, spectral restoration.
+
+\cleardoublepage
+
+\cleardoublepage
+\section*{Agradecimientos}
+\begin{comment}
+Al finalizar un trabajo tan arduo y lleno de dificultades como el desarrollo de una tesis doctoral es inevitable que te asalte un muy humano egocentrismo que te lleva a concentrar la mayor parte del mérito en el aporte que has hecho. Sin embargo, el análisis objetivo te muestra inmediatamente que la magnitud de ese aporte hubiese sido imposible sin la participación de personas e instituciones que han facilitado las cosas para que este trabajo llegue a un feliz término. Por ello, es para mí un verdadero placer utilizar este espacio para ser justo y consecuente con ellas, expresándoles mis agradecimientos. No olvidar dar reconocimiento al CONAHCYT en caso de haber recibido beca.
+\end{comment}
+
+\cleardoublepage
+
+% Índices
 \tableofcontents
+\cleardoublepage
 
-\newpage
-\espacioSeccion
 \listoffigures
+\cleardoublepage
 
-%\newpage
-%\espacioSeccion
-%\lstlistoflistings
+\listoftables
+\cleardoublepage
+
+\lstlistoflistings
+\cleardoublepage
+
+
+% Glosario
+\chapter*{Glosario}
+El glosario es un catálogo de palabras como un antecedente a sus definiciones a lo largo del texto, pero también como una forma fácil de revisar de una forma rápida sus definiciones.
+\addcontentsline{toc}{chapter}{Glosario}
+\begin{description}
+    \item[AUV] Autonomous Underwater Vehicle (Vehículo Submarino Autónomo).
+    \item[CIP] Channel Intensity Prior.
+    \item[DCP] Dark Channel Prior.
+    \item[IA] Inteligencia Artificial.
+    \item[ROV] Remotely Operated Vehicle (Vehículo Operado Remotamente).
+\end{description}
 
 \cleardoublepage
 \pagenumbering{arabic} % Reinicia paginación a números arábigos (1, 2, 3...)
 
+
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+
 \espacioSeccion
-\section{Introducción}
-%"Restauración geométricamente consistente y calibración adaptativa de cámaras submarinas para sistemas de visión de vehículos ROV"
-
-%Consiste en una descripción clara y concisa del problema que se trabajó. Debe proporcionar la información necesaria acerca del contenido general del proyecto pero no se debe adelantar el resultado final del trabajo.}
-
+\chapter{Introducción}
+\begin{comment}
+En este capítulo se deben incluir los siguientes elementos que debieron ser presentados en la Propuesta de Tesis: Antecedentes, Definición del problema, Justificación, Objetivos, Hipótesis.
+La redacción de la introducción no debe ser una ampliación del resumen, así como tampoco una descripción del contexto en el cual está inmerso el trabajo de tesis. En este apartado se debe de exponer de una manera global el estado del arte y del marco teórico y el propósito del trabajo (este objetico (propósito) es muy diferente al expuesto al objetivo de la investigación).
+\end{comment}
 Se propone desarrollar un algoritmo robusto de calibración de cámaras submarinas para sistemas de visión de vehículos ROV, capaz de mantener su precisión ante variaciones en las condiciones de adquisición de las imágenes. El algoritmo considerará el efecto de la temperatura del agua, variaciones en los componentes RGB e iluminación, buscando minimizar su influencia sobre los parámetros de calibración. La validación se realizará mediante experimentos controlados en tanque de agua y alberca. Se evaluará el desempeño del método mediante error de reproyección, estabilidad de los parámetros de calibración y precisión en reconstrucción 3D y medición de objetos
 submarinos.
 
+\section{Antecedentes}
+\begin{comment}
+Aquí se le comunica al lector los motivos que despertaron su interés en este trabajo. Lleve al lector por el mismo proceso que siguió para definir la necesidad de realizar un estudio acerca del tema. El objeto de esta parte es motivar al lector. Aclárele el porqué del trabajo, cómo se interesó en él, dónde, cuándo, qué y quién lo estimuló para que lo llevara a cabo. Tenga cuidado de no convertir esta sección en una historia del tema. Si la historia es necesaria para el desarrollo del trabajo, entonces ´esta debe ser parte de la sección titulada Fundamentos. Los antecedentes deben terminar con una oración de transición que guíe al lector con naturalidad a la siguiente sección. Por ejemplo, un antecedente puede ser la ausencia de conocimiento en el campo de estudio, otro puede ser la oportunidad de desarrollar una nueva tecnología. Estos casos resultan de la revisión del estado del arte y el marco teórico. Como un antecedente, también, las necesidades de resolver un problema en la industria.
+\end{comment}
+
+\section{Definición del problema}
+\begin{comment}
+Un tema bien definido implica un buen porcentaje de avance del trabajo. Exponerlo vagamente origina cuestionamientos irrelevantes o desviaciones del objetivo. Se necesita formular el problema específico en términos concretos y explícitos, de manera que sea susceptible de investigarse con procedimientos científicos. El enunciado debe redactarse en forma de aseveración. Posteriormente, los conceptos pueden tratarse con mayor profundidad. La redacción de un problema tiene que ser en forma de un argumento, es decir, tiene que tener proposiciones como antecedentes y una proposición como concluyente. Las proposiciones de antecedentes describen el campo donde está inmersa la problemática, ejemplo: el tipo de industria donde se plantea el problema, el campo de la ciencia o el desarrollo tecnológico. Además, algunas proposiciones de investigaciones o desarrollos tecnológicos que preceden el trabajo. La proposición concluyente es el problema a resolver.
+\end{comment}
 
 
-
-\newpage
-\espacioSeccion
-\section{Planteamiento del problema}
-%En esta sección el tutor define el problema a resolver por el estudiante. Por ejemplo se recomienda dar respuesta a las interrogantes:
-%¿Qué se va a hacer?, ¿Para qué servirá?, ¿Qué hechos anteriores guardan relación con el problema?, ¿Cuál es la situación actual?, ¿Qué pasa si no se hace nada?
-%Las respuestas a las preguntas plateadas deberán ser contestadas en las conclusiones del proyecto.
+\section{Justificación}
+\begin{comment}
+Esta sección incluye dos puntos: El por qué vale la pena realizar este estudio y quiénes se beneficiarán con los resultados. Justifique la razón por la cual el tema es importante. Este apartado está muy relacionado con los antecedentes. Para el caso de la industria la justificación es el resolver su problema o satisfacer una necesidad de la sociedad.
+\end{comment}
 
 
-
-\newpage
-\espacioSeccion
 \section{Objetivos}
-%El tutor en colaboración con el estudiante deducen el objetivo general del proyecto, del planteamiento del problema, ¿Qué se quiere obtener?
-
-%Los objetivos deben ser metas concretas, que puedan alcanzarse y deben ser posibles de verificar y medir.
-%Deben redactarse en forma clara, breve y concisa.
-%Esta estructura gramatical es básica:
-%Verbo en infinitivo + objeto directo + complementos circunstanciales.
+\begin{comment}
+Sí bien, los objetivos son actividades con un propósito, se debe de recalcar que los objetivos son las actividades principales del trabajo desarrollado. Por lo que, solo deben de plantearse aquellas que plantean un conocimiento nuevo o una nueva tecnología o sistema a implementarse. Cabe mencionar que los objetivos tienen una estructura que los diferencia de las demás actividades desarrollas en la metodología empleada. Y esta es que tiene un qué y un para qué y en algunas ocasiones se agrega una proposición del cómo se puede llevar a cabo el objetivo. Su redacción comienza con un verbo en infinitivo.
+\end{comment}
 
 \subsection{Objetivo General}
+\begin{comment}
+El propósito de esta sección es que el lector sepa lo que pretende lograr. La mejor
+forma de medir si los objetivos están correctamente redactados es pensar que éstos serán la introducción de la sección titulada Conclusiones, donde se indicará si se lograron o no los objetivos aquí presentados. Esto se conoce como objetivo general.
+
+El objetivo general está relacionado con la proposición concluyente del argumento del
+problema. Por lo que, la proposición ayuda a redactar el objetivo general. Solo debe de
+haber un objetivo general y en su redacción solo se debe redactar con un solo verbo.
+\end{comment}
 
 \subsection{Objetivos Específicos}
+\begin{comment}
+Los objetivos específicos también deben ser presentados en esta sección. Provienen del objetivo general y son los que indican las acciones que se van a realizar para alcanzar el objetivo general.
 
-\newpage
-\espacioSeccion
-\section{Justificación}
-%Describir los motivos por los cuales se realiza el proyecto, resaltar la importancia desde los puntos de vista teórico y práctico.
-%Enunciar los beneficios que aportará la realización del proyecto.
-%Demostrar la factibilidad de hacer el proyecto.
-%Identificar quienes son los usuarios o clientes potenciales que se beneficiarán con el proyecto.
-%Debido a que el sistema no depende de una computadora externa para procesar la información de la red neuronal, hace que el ROV sea mucho más independiente del hardware que el operador de turno tenga. Además, al ser un sistema embebido, el consumo de energía es mucho menor, lo cual hace que el ROV pueda trabajar por más tiempo sin tener que hacer cambio o recarga de baterías.
+Los objetivos específicos indican con precisión los conceptos, variables o dimensiones que fueron objeto de estudio.
+\end{comment}
 
-%Esto es posible debido a que, al aplicar el destilamiento de conocimientos, la red resultante es mucho más ligera y simple, disminuyendo por mucho la cantidad de operaciones que el sistema necesita realizar al hacer una inferencia, disminuyendo así tanto el tiempo de ejecución como el consumo de energía. 
+\subsection{Objetivos particulares}
+\begin{comment}
+Los objetivos particulares se relacionan con unidades más pequeñas que se desarrollaron durante el trabajo investigación, es decir, se relacionan con subproyectos como lo puede ser el desarrollo de un instrumento o algún sistema, algoritmo entre otros.
+
+No siempre se debe de incluir estos objetivos secundarios. Mucho depende de la naturaleza del proyecto que se llevó a cabo, pues el proyecto en sí mismo determino qué tipo de objetivos secundarios se desarrollaron.
+
+Cabe mencionar que no se deben de plantear como objetivos actividades esenciales que fueron necesarias en el desarrollo de la investigación, por ejemplo: si se realizó un diseño de experimentos para determinar qué importancia tenían estas variables esto fue fundamental en el desarrollo del proyecto, pero no es un objetivo.
+\end{comment}
 
 
+\section{Hipótesis}
+\begin{comment}
+Se deben expresar las hipótesis de trabajo que rigieron el desarrollo del proyecto y a las cuales se les intenta dar respuesta con los resultados de la investigación. Es importante recordar que las hipótesis son las proposiciones del investigador para solucionar el problema en que trabaja.
+
+La hipótesis está muy relacionada con el problema, el objetivo, el estado del arte y el marco teórico. La actividad principal (objetivo) ayuda a comprobar la hipótesis planteada desde el planteamiento del proyecto. La hipótesis está fundamentada en el estado del arte y el marco teórico.
+
+La hipótesis es una proposición comprobable, redactada en presente y una de la forma comprables es mediante la contrastación.
+\end{comment}
+
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
 
 
-\newpage
-\espacioSeccion
-\section{Estado del arte}
-%Es necesario que el estudiante fundamente la teoría a utilizar, para ello deberá hacer una revisión bibliográfica de corte técnico.
-%En esta sección el estudiante describe brevemente las diferentes teorías relacionadas existentes sobre el tema del proyecto, esto permitirá al estudiante contar con un punto de vista conceptual.
+\chapter{Estado del Arte y Marco Teórico}
+\section{Análisis del estado del arte}
+\begin{comment}
+Aquí se debe de hacer un análisis de todas las investigaciones que se relacionan con el trabajo realizado, pero sobre todo se debe de incluir o criticar como es que contribuyen o contribuyeron en el desarrollo del trabajo. Esta sección es el fundamento de la redacción de la hipótesis, así como también de aquí, se toman las proposiciones que apoyan el argumento del problema. También de aquí se toman las técnicas, métodos (matemáticos, físicos entre otros) o procedentes que ayudaron a plantear la metodología que se llevó a cabo en el proyecto.
+\end{comment}
 
-La visión subacuática tiene 2 principales desafíos, la distorsión geométrica causada por la refracción en el agua-vidrio-aire que tiene la cámara, y la degradación radiométrica, que es el color, contraste, entre otras. Esta es principalmente provocada porque el agua absorbe y dispersa la luz que recibe. Desde hace muchos años la calibración de las cámaras que se usan en entornos submarinos se realizó con modelos geométricos rígidos, que estaban centrados en la corrección por refracción, como por ejemplo el método de Zhang \parencite{calZhang}. Pero estos enfoques no tienen en cuenta otros factores ambientales, como la temperatura, la salinidad, la iluminación, o incluso la interacción de la luz con el medio en sí \parencite{11176009}. Con el paso de los años estos métodos de restauración y calibración han avanzado a través de modelos físicos orientados a la física del medio, y más reciente, usando inteligencia artificial y redes neuronales.
+La visión subacuática tiene 2 principales desafíos, la distorsión geométrica causada por la refracción en el agua-vidrio-aire que tiene la cámara, y la degradación radiométrica (pérdida de contraste, atenuación cromática y dispersión), principalmente provocada porque el agua absorbe y dispersa la luz que recibe. Desde hace muchos años la calibración de las cámaras que se usan en entornos submarinos se realizó con modelos geométricos rígidos, que estaban centrados en la corrección por refracción, siendo el método de Zhang \parencite{calZhang} el más representativo. Pero estos enfoques no toman en cuenta otros factores ambientales, como la temperatura, la salinidad, la iluminación, o incluso la interacción de la luz con el medio en sí \parencite{11176009}. Con el paso de los años estos métodos de restauración y calibración han avanzado a través de modelos físicos orientados a la física del medio, y más reciente, usando inteligencia artificial y redes neuronales.
 
 \subsection*{Evolución de los Modelos Físicos y Métodos Tradicionales}
 
-Entre \textbf{2005 - 2016} los primeros acercamientos fueron usando hardware óptico especializado, o de la adaptación directa de priors atmosféricos terrestres (el \textit{Dark Channel Prior}) \parencite{rs15194699} \parencite{Ke_2023}. Estos funcionaban en entornos controlados, pero tenían muchas limitaciones, los priors terrestres fallaban por la absorción dependiente de la longitud de onda y la arena brillante \parencite{9020130}.
+Durante el periodo \textbf{2005 - 2016}, los primeros acercamientos fueron usando hardware óptico especializado, o de la adaptación directa de priors atmosféricos terrestres (el \textit{Dark Channel Prior}) \parencite{rs15194699} \parencite{Ke_2023}. Estos métodos funcionaban en entornos controlados, pero tenían muchas limitaciones, los priors terrestres fallaban por la absorción dependiente de la longitud de onda y la arena brillante \parencite{9020130}.
 
-Después, entre \textbf{2017 - 2019} se empezó a introducir el modelado explícito de la atenuación espectral mediante curvas de Haze-Lines y métodos de estimación de profundidad por desenfoque y absorción(IBLA) \parencite{rs15194699} \parencite{Ke_2023}. Esto permitió considerar la degradación por longitud de onda, tenían problemas e ineficiencias en zonas marinas sin textura (zonas donde no se puede estimar la profundidad), aparte de que tienen una calcificación muy rígida para poder ser usada en cuerpos de agua reales y cambiantes \parencite{Ke_2023} \parencite{9020130}.
+Posteriormente, entre \textbf{2017 y 2019} se priorizó la investigación en el modelado explícito de la atenuación espectral mediante curvas de Haze-Lines y métodos de estimación de profundidad por desenfoque y absorción(IBLA) \parencite{rs15194699} \parencite{Ke_2023}. Esto permitió considerar la degradación por longitud de onda, tenían problemas e ineficiencias en zonas marinas sin textura (zonas donde no se puede estimar la profundidad), aparte de que tienen una calcificación muy rígida para poder ser usada en cuerpos de agua reales y cambiantes \parencite{Ke_2023} \parencite{9020130}.
 
-Entre \textbf{2020 - 2023} se centraron más en investigar el desacoplamiento de fenómenos ópticos. Para ello se incorporó el balance cromático adaptativo en diversos espacios de color, también la estimación del \textit{backscatter} mediante píxeles obscuros adaptativos, modelos MCLA con ley de Lambert-Beer \parencite{10216333} y balance adaptativo en espacios \textit{Lab y CIE L*a*b*} \parencite{rs15194699}. Los resultados tuvieron mayor fidelidad en la restauración, pero tenían una corrección deficiente cuando se usaba iluminación artificial severa, que es muy usada en ROVs y AUVs, además generaba artefactos en regiones obscuras o sobrecompensación en el canal rojo.
+Entre \textbf{2020 y 2023} se centraron más en investigar el desacoplamiento de fenómenos ópticos. Para ello se incorporó el balance cromático adaptativo en diversos espacios de color, también la estimación del \textit{backscatter} mediante píxeles obscuros adaptativos, modelos MCLA con ley de Lambert-Beer \parencite{10216333} y balance adaptativo en espacios \textit{Lab y CIE L*a*b*} \parencite{rs15194699}. Los resultados tuvieron mayor fidelidad en la restauración, pero tenían una corrección deficiente cuando se usaba iluminación artificial severa, que es muy usada en ROVs y AUVs, además de generar artefactos en regiones obscuras o sobrecompensación en el canal rojo.
 
 
-En los años \textbf{2024 - 2025} surgieron modelos heurísticos avanzados (MJPNet) \parencite{10798483} y filtros homomórficos acoplados a restricciones físicas con clasificación por factor de riesgo de sesgo cromático \parencite{ZHANG2025108826}, la complejidad, consumo computacional, y rigidez por la dependencia de datasets de entrenamiento causo que sea complicado usarlos en entornos reales sobre todo en sistemas embebidos de AUVs y ROVs en tiempo real.
+Recientemente en los años \textbf{2024 y 2025} surgieron modelos heurísticos avanzados como (MJPNet) \parencite{10798483} y filtros homomórficos acoplados a restricciones físicas con clasificación por factor de riesgo de sesgo cromático \parencite{ZHANG2025108826}. Sin embargo, la complejidad, el consumo computacional, y la rigidez debido a  la dependencia de datasets de entrenamiento causo que sea complicado usarlos en entornos reales sobre todo en sistemas embebidos de AUVs y ROVs en tiempo real.
 
 \subsection*{Evolución de los Modelos de Inteligencia Artificial y Redes Neuronales}
 
-Las redes neuronales inicialmente fueron empleadas para mejorar el color e imagen obtenida, poco tiempo después empezaron a calibrar las cámaras directamente, siguiendo una trayectoria de 3 fases: primero se emplearon para mejorar las imágenes degradadas, después se emplearon modelos híbridos, que estiman las variables físicas  como la profundidad, la transmisión y el \textit{backscatter}, y finalmente recientemente, las redes aplican una calibración implícita o directa. 
+La integración de redes neuronales en la visión subacuática ha seguido una línea histórica de investigación de tres fases claras: una primera etapa enfocada en la mejora de calidad de imágenes degradadas; una segunda dedicada a crear modelos híbridos que estiman variables físicas intermedias (profundidad, transmisión y \textit{backscatter}); y una tercera etapa reciente donde las redes ejecutan calibraciones implícitas o directas sobre el sistema óptico.
 
+En la primera fase, en los años \textbf{2017 - 2020} el principal problema para el entrenamiento de redes neuronales, fue la escasez de datos (\textit{ground truth}) en entornos submarinos, Para ello \textit{WaterGAN} generó imágenes subacuáticas de manera sintética, usando pares RGB-D en aire y con ello aprendió una corrección de color monocular en 2 etapas, esta fue validada en un tanque de agua, así como en campo \parencite{7995024}.\\
 
-En los años \textbf{2017 - 2020} el problema que existía para poder emplear redes neuronales, fue la falta de ground truth submarino, \textit{WaterGAN} generó imágenes subacuáticas de manera sintética, usando pares RGB-D en aire y con ello aprendió una corrección de color monocular en 2 etapas, esta fue validada en un tanque de agua, así como en campo \parencite{7995024}.\\
+Entre \textbf{2018 y 2020} redes como CNN y redes residuales aparte de corregir el color, también lo hacían para \textit{de-scattering}, \textit{blur} y profundidad. En imágenes con baja iluminación, las redes CNN usaron una estimación de profundidad y corrección espectral para compensar el \textit{scattering} y la perdida cromática \parencite{LU2018142}. Mientras otras redes como \textit{UWCNN} directamente empezó a hacer reconstrucción directa de la imagen latente, esta fue entrenada con datos sintéticos basados en un modelo básico, y distintos tipos de agua \parencite{LI2020107038}.
 
-En \textbf{2018-2020} redes como CNN y redes residuales aparte de corregir el color, también lo hacían para \textit{de-scattering}, \textit{blur} y profundidad. En imágenes con baja iluminación, una CNN usó una estimación de profundidad y corrección espectral para compensar el \textit{scattering} y la perdida cromática \parencite{LU2018142}. La red UWCNN directamente empezó a hacer reconstrucción directa de la imagen latente, esta fue entrenada con datos sintéticos basados en un modelo básico, y distintos tipos de agua \parencite{LI2020107038}.
+Al mismo tiempo, un marco \textit{end-to-end} añadió el enfoque de desenfoque a la base sintética debido a que la bases anteriores solo consideraban el \textit{scattering} y la atenuación \parencite{9072473}.
 
-Otra red \textit{end-to-end} añadió el enfoque de desenfoque a la base sintética debido a que la bases anteriores solo consideraban el \textit{scattering} y la atenuación \parencite{9072473}.
-
-Durante los años \textbf{2021 - 2023} se dejó de tratar la restauración como algo desconocido, y las redes empezó a ser diseñadas según la física por canal. \textit{Deep WaveNet} menciono que las imágenes subacuáticas requieren tamaños de contexto distintos por canal, esto es porque la atenuación de la longitud de onda es asimétrica, además incorporo \textit{skip connections atentas} para refinar ciertos rasgos multicontexto \parencite{10.1145/3511021}. Él señalaba que reutilizar CNN que eran para entornos terrestres sin rediseño para entornos subacuáticos produce artefactos y color distorsionado.
+Durante los años \textbf{2021 - 2023} se dejó de tratar la restauración como algo desconocido, y las redes empezó a ser diseñadas según la física por canal. Redes como \textit{Deep WaveNet} demostraron que las imágenes subacuáticas requieren tamaños de contexto distintos por canal, esto es porque la atenuación de la longitud de onda es asimétrica, además incorporo \textit{skip connections atentas} para refinar ciertos rasgos multicontexto \parencite{10.1145/3511021}. Él señalaba que reutilizar CNN que eran para entornos terrestres sin rediseño para entornos subacuáticos produce artefactos y color distorsionado.
 
 Otros métodos también fueron surgiendo, como algunos que estiman la profundidad, el \textit{backscatter}, la iluminación y coeficientes de atenuación, esto con módulos neuronales o semi neuronales. Por ejemplo tenemos el trabajo de Zhou, que empleo prior de pixel oscuro adaptativo, combinó el modelo de formación de imagen, \textit{Channel Intensity Prior}, la eliminación de \textit{backscatter}, y una etapa no supervisada para reducir los efectos de usar luz artificial \parencite{Zhou2025}. Otro modelo uso 2 etapas para estimar el coeficiente de atenuación, esto para guiar la restauración horizontal, luego usó un bloque de atención por prior de atenuación para recalibrar los mapas RGB en la disposición vertical \parencite{9311705}. Al mismo tiempo, un campo de reflectancia neuronal, aprendió conjuntamente el color verdadero, la atenuación y el \textit{backscatter} desde múltiples vistas, como la iluminación \textit{onboard} de robots, esto sin depender de pre-entrenamiento o de mapas de profundidad obtenidos previamente \parencite{10225666}.
 
@@ -395,56 +374,123 @@ Específicamente en la calibración geométrica, actualmente hay 2 líneas de de
 
 Para la calibración de color también se volvió más geométrico. Hay un método auto-adaptativo para aguas profundas que usa mapas de profundidad generados por SfM-MVS, zonas bien iluminadas y una FNN para restaurar el color sin tener que usar cartas de color ni información del ambiente de manera precisa, esto siempre y cuando la configuración de la cámara-luz se mantenga estable \parencite{rs16071279}. Este sistema aunque ya está más cerca de una calibración operativa, aun sigue dependiendo de solape suficiente y de que algunas regiones funcionen como \textit{pseudo-ground-truth} Cromático.
 
+A pesar de los avances documentados, esta revisión del estado de arte revela que aún hay limitaciones no resueltas hasta la fecha:
+\begin{itemize}
+  \item En la literatura se vio que la mayoría de métodos contemplan la profundidad, la atenuación espectral, el \textit{backscatter} y la dispersión, ningún modelo actual tanto físico o neuronal, contempla la temperatura del agua como parámetro dinámico, esto ignora que la variación de temperatura varían directamente el índice de refracción del agua y, por lo tanto, también la respuesta óptica.
+  \item Los métodos de calibración y restauración actuales con mayor precisión cromática y geométrica, dependen de tener una alta carga computacional, lo que imposibilita su uso en tiempo real en sistemas embebidos de ROVs y AUVs. Además de que fallan en presencia de iluminación artificial severa, que es muy usada en estos sistemas.
+\end{itemize}
 
-\newpage
-\espacioSeccion
-\section{Metodología}
+\section{Descripción del marco teórico}
+\begin{comment}
+El marco teórico se extrae del análisis del estado del arte y en esta sección se plantea el procedimiento que se llevó a cabo para el desarrollo del proyecto de investigación. Se desarrollan los procedimientos matemáticos, físicos o técnicos necesarios en el proyecto.
+
+El propósito principal de esta sección es identificar el conocimiento existente acerca del tema del trabajo que se va a desarrollar. Este trabajo deberá estar insertado en el panorama completo de dicho conocimiento. No se trata de repetir lo que otros autores, competentes en su área, hayan escrito. Tampoco debe ser esta sección una serie de citas hiladas. En este capítulo debe mencionar:
+1. qué es lo que ya se conoce sobre este tema,
+2. cuáles son las investigaciones más recientes sobre el tema,
+3. en qué teoría se va a fundamentar,
+4. cómo se relaciona el trabajo con lo anterior, entre otros aspectos.
+
+Antes de iniciar el trabajo se debe hacer una búsqueda bibliográfica, discográfica y videográfica sobre el tema que se está abordando. Se necesitan fuentes que respalden el informe que se va a presentar. El trabajo puede considerar fuentes teóricas, estadísticas, institucionales, administrativas, jurídicas o información de investigaciones realizadas en el área. Al analizar la bibliografía acerca del tema, su tarea es indicar las direcciones que otros autores han tomado con relación a su trabajo.
+
+Una vez analizados los fundamentos, es importante que usted conceptualice con claridad la relación existente entre su trabajo y la información de otros autores.
+
+La organización de este apartado puede ser en forma histórica o cronológica, es decir, los encabezados pueden determinarse por orden de fechas. El orden puede ser descendente o ascendente, dependiendo del objetivo de su trabajo. Las características esenciales del tema también pueden servir de guía en la redacción de esta sección. Otra posibilidad de organización son los pros y los contras, ir de lo simple a lo complejo, de lo general a lo específico, de menor a mayor o por causa y efecto, entre otras.
+\end{comment}
 
 
-\newpage
-\espacioSeccion
-\section{Resultados}
-%Cuando haya terminado su proyecto, es necesario:
-%Organizar y estructurar la información que se ha generado.
-%Evaluar los resultados obtenidos.
-%Analizar y discutir los resultados con su(s) Tutor (es).
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
 
-%En esta sección el estudiante presenta y analiza los resultados de su proyecto:
-%\begin{enumerate}
-    %\item Verifica sus resultados, es decir comprueba cuales fueron sus resultados obtenidos de una manera objetiva sin hacer juicio de valor.
-    %\item Comprueba los resultados reales con los previstos, compara lo que se hizo realmente con lo que se preveía conseguir, sin intentar explicar los desajustes.
-    %\item Análisis de resultados, explica las razones o factores que provocaron las posibles desviaciones entre lo real y lo previsto, si el objetivo fue cumplido y se llegó a la solución del problema.
-%\end{enumerate}
+\chapter{Método o Procedimiento de Investigación}
 
-%Se podrán mostrar tablas y gráficas donde se identifiquen los principales resultados de las pruebas aplicadas que posibiliten ilustrar resultados.
+\section{Descripción del método}
+\begin{comment}
+Este Capítulo debe indicar todas las actividades realizadas: pruebas piloto, escalas, criterios de desarrollo, técnicas estadísticas, procedimientos, variables, controles, procedimientos para comprobar hipótesis. Debe ser preciso en la descripción pues la idea es dar a conocer qué y cómo se hizo. Si se utilizaron fórmulas, señalarlas, si se empleó algún software estadístico indicarlo y explicar cómo se utilizó, entre otros datos. En este Capítulo debe dar el enfoque metodológico utilizado, población estudiada, selección de las muestras, elaboración, selección y desarrollo de instrumentos, es decir, debe proporcionar la suficiente información de forma tal que la investigación pueda reconstruirse.
+
+El tipo de material que se utilizó se debe de describir con todas sus características principales, composición, estructura, constantes físicas o químicas etc. El equipo utilizado se debe de justificar y describir las características que tiene. Se debe de pensar que si alguien requiere reproducir el trabajo realizado debe de considerar todas las características y propiedades de los equipos y materiales utilizados para reproducir los resultados presentados.
+\end{comment}
 
 
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
 
-\newpage
-\espacioSeccion
+\chapter{Resultados}
+
+\section{Descripción de los resultados}
+\begin{comment}
+Este Capítulo comprende dos partes fundamentales: una, la presentación de los resultados y la otra, la discusión o análisis de los mismos. Puede optar por hacer la presentación e interpretación de los resultados de una manera simultánea, o proceder a la presentación de los resultados en una sección y su discusión, análisis o interpretación en una segunda sección.
+Se sugiere que la presentación de resultados tenga un orden similar al del capítulo que lo antecede porque no sólo ayuda al investigador en su presentación, sino que permite al lector seguir una secuencia lógica de pensamiento. Sea cuidadoso en el análisis e interpretación de los resultados, pues el verdadero significado puede ocultarse en una mala redacción y pudiera interpretarse de una forma totalmente diferente. No vaya más allá de los resultados alcanzados.
+Es probable que en este Capítulo usted necesite elaborar tablas y figuras para representar sus resultados. En este caso, asegúrese de que cada tabla y cada figura se encuentren en el texto de la tesis posteriormente a su presentación. No las elabore si en el texto usted puede describir fácilmente la información. Si alguna ayuda visual se presenta horizontalmente y ocupa toda la página, su número y título deben colocarse a la izquierda del lector. Es muy tedioso leer un informe con tablas y figuras que se encuentren al revés.
+Sea cuidadoso en la elaboración de las ayudas visuales finales. Asegúrese de que los números de cada columna estén alineados. Los puntos decimales de cada número deben colocarse exactamente debajo del anterior. Deje suficiente espacio entre columnas para evitar confusión. Los cuadros y las figuras deben caber en páginas tamaño carta, no en hojas de tamaños irregulares. Las unidades de medida deben estar claramente indicadas. Utilice el sistema internacional, a no ser que tenga alguna razón específica para no hacerlo. En este caso, indique cuál es esa razón. Revise la aritmética utilizada.
+\end{comment}
+
+
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+
+
+\chapter{Conclusiones y Recomendaciones}
+
 \section{Conclusiones}
-%Constituye la parte final del Proyecto Terminal, cuyo objetivo es ofrecer una apreciación global de fortalezas y debilidades del proyecto.
-%El alumno da respuesta al problema planteado, con un resumen de lo realizado, resaltando los hallazgos más importantes y haciendo una valoración de los objetivos para identificar si se cumplieron o no.
-%Puede proponer recomendaciones y propuestas de mejora derivadas de su proyecto.
+\begin{comment}
+Esta sección le permite tener su última comunicación con el lector para asegurarle que todo lo prometido al principio se ha cumplido. Inicie con el objetivo o los objetivos planteados al inicio de su trabajo e indique como éste o éstos se han logrado. Las conclusiones de desprenden directamente de los resultados de su trabajo. Además, debe expresar el cumplimiento de las hipótesis, contraste lo expresado en el marco teórico con los resultados, demuestre que los resultados alcanzados respaldan o se oponen a publicaciones y trabajos de investigación anteriores y en qué se diferencia o amplia lo desarrollado anteriormente.
+\end{comment}
+
+\section{Recomendaciones}
+\begin{comment}
+En la sección de recomendaciones, usted puede indicar los deseos que le han surgido durante el proceso del trabajo para desarrollar nuevos estudios de este tipo. En ocasiones, debido al objetivo establecido al inicio, no es posible desviarse de ´el; pero este desvío pudiera ser interesante en otro momento. Quizá este trabajo lo ha motivado a realizar otros. Estos los debe indicar en esta sección, pues de esa manera no se olvidarán. Asimismo, debe indicar qué se debe hacer con los resultados y dónde aplicarlos. Para la tesis de doctorado en particular, debe dejar claramente expresado en el párrafo final cuál es la contribución a la ciencia, al conocimiento, o a ambos, del trabajo.
+\end{comment}
 
 
-\newpage
-\espacioSeccion
-\section{Bibliografía}
-%Aquí se anotan los datos que permiten identificar las fuentes documentales a utilizar en el desarrollo del proyecto de acuerdo a lineamientos de APA. Las fuentes más usuales son las
-%siguientes:
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
 
-%Referencias: Citar la lista de referencias consultadas y comentadas en el informe presentado.
-%Libro: incluye autor, título, edición, lugar de la edición, fecha de la edición y página.
-%Anexos o apéndices: corresponde toda la información que ayuda a profundizar y que sirvió de apoyo en el tema.
+
+
+\chapter{Referencias}
 
 \nocite{*}
 \printbibliography[heading=none]
 
-\newpage
-\espacioSeccion
-\section{Anexos}
+
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+% =====================================================================================
+
+\begin{appendices}
+\chapter{Formato y Contenido de Tesis}
+\begin{comment}
+Formalmente, la tesis es un informe extenso de experimentación, de diseño o teórico, con una estructura problema - método - resultados - discusión. Este patrón hipotético-deductivo de desarrollar una tesis para resolver un problema y luego construir una metodología y probar los resultados es común en la redacción de reportes de investigación. Cuando se comienza a escribir el primer borrador de la tesis, se trata de rescatar material útil para identificar problemas, metodologías y bibliografías. En todo momento debe mantenerse lenguaje inclusivo cuando corresponda.
+\end{comment}
+\end{appendices}
+
+\cleardoublepage
+\chapter*{Declaración de Autoría}
+\addcontentsline{toc}{chapter}{Declaración de Autoría}
+Por la presente declaro que he elaborado este documento sin la ayuda prohibida de terceros y sin hacer uso de ayudas distintas de las especificadas; nociones asumidas directamente o indirectamente de otras fuentes se han identificado como tales. Este documento no ha sido previamente presentado en forma idéntica o similar de algún otro examen nacional o extranjero.
+
+\vspace{3cm}
+El trabajo de tesis se llevó a cabo de \textbf{año de inicio del trabajo} a \textbf{año de térmico del trabajo} bajo la supervisión del Dr.\textbf{Nombre apellidos del director de tesis}.
 
 
+\vspace{3cm}
+
+\begin{flushright}
+Santiago de Querétaro, Qro., a \today
+\end{flushright}
 
 \end{document}
