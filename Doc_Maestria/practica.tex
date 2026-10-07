@@ -316,7 +316,7 @@ La visión subacuática tiene 2 principales desafíos, la distorsión geométric
 
 Durante el periodo \textbf{2005 - 2016}, los primeros acercamientos fueron usando hardware óptico especializado, o de la adaptación directa de priors atmosféricos terrestres (el \textit{Dark Channel Prior}) \parencite{rs15194699} \parencite{Ke_2023}. Estos métodos funcionaban en entornos controlados, pero tenían muchas limitaciones, los priors terrestres fallaban por la absorción dependiente de la longitud de onda y la arena brillante \parencite{9020130}.
 
-Posteriormente, entre \textbf{2017 y 2019} se priorizó la investigación en el modelado explícito de la atenuación espectral mediante curvas de Haze-Lines y métodos de estimación de profundidad por desenfoque y absorción(IBLA) \parencite{rs15194699} \parencite{Ke_2023}. Esto permitió considerar la degradación por longitud de onda, tenían problemas e ineficiencias en zonas marinas sin textura (zonas donde no se puede estimar la profundidad), aparte de que tienen una calcificación muy rígida para poder ser usada en cuerpos de agua reales y cambiantes \parencite{Ke_2023} \parencite{9020130}.
+Posteriormente, entre \textbf{2017 y 2019} se priorizó la investigación en el modelado explícito de la atenuación espectral mediante curvas de Haze-Lines y métodos de estimación de profundidad por desenfoque y absorción(IBLA) \parencite{rs15194699} \parencite{Ke_2023}. Esto permitió considerar la degradación por longitud de onda, pero tenían problemas e ineficiencias en zonas marinas sin textura (zonas donde no se puede estimar la profundidad), aparte de que tienen una calcificación muy rígida para poder ser usada en cuerpos de agua reales y cambiantes \parencite{Ke_2023} \parencite{9020130}.
 
 Entre \textbf{2020 y 2023} se centraron más en investigar el desacoplamiento de fenómenos ópticos. Para ello se incorporó el balance cromático adaptativo en diversos espacios de color, también la estimación del \textit{backscatter} mediante píxeles obscuros adaptativos, modelos MCLA con ley de Lambert-Beer \parencite{10216333} y balance adaptativo en espacios \textit{Lab y CIE L*a*b*} \parencite{rs15194699}. Los resultados tuvieron mayor fidelidad en la restauración, pero tenían una corrección deficiente cuando se usaba iluminación artificial severa, que es muy usada en ROVs y AUVs, además de generar artefactos en regiones obscuras o sobrecompensación en el canal rojo.
 
@@ -325,7 +325,7 @@ Recientemente en los años \textbf{2024 y 2025} surgieron modelos heurísticos a
 
 \begin{table}[htbp]
   \centering
-  \caption{Resumen de la evolución de métodos físicos y tradicionales de restauración subacuática.}
+  \caption{Evolución de métodos físicos y tradicionales de restauración subacuática.}
   \label{tab:metodos_fisicos_tradicionales}
   \small
   \begin{tabularx}{\textwidth}{c l X X}
@@ -395,7 +395,7 @@ Para la calibración de color también se volvió más geométrico. Hay un méto
 
 A pesar de los avances documentados, esta revisión del estado de arte revela que aún hay limitaciones no resueltas hasta la fecha:
 \begin{itemize}
-  \item En la literatura se vio que la mayoría de métodos contemplan la profundidad, la atenuación espectral, el \textit{backscatter} y la dispersión, ningún modelo actual tanto físico o neuronal, contempla la temperatura del agua como parámetro dinámico, esto ignora que la variación de temperatura varían directamente el índice de refracción del agua y, por lo tanto, también la respuesta óptica.
+  \item En la literatura se vio que la mayoría de métodos contemplan la profundidad, la atenuación espectral, el \textit{backscatter} y la dispersión, ningún modelo actual tanto físico o neuronal, contempla la temperatura del agua como parámetro dinámico, ignorar esto provoca fallos en la respuesta óptica, debido a que la variación de temperatura afecta directamente el índice de refracción del agua.
   \item Los métodos de calibración y restauración actuales con mayor precisión cromática y geométrica, dependen de tener una alta carga computacional, lo que imposibilita su uso en tiempo real en sistemas embebidos de ROVs y AUVs. Además de que fallan en presencia de iluminación artificial severa, que es muy usada en estos sistemas.
 \end{itemize}
 
