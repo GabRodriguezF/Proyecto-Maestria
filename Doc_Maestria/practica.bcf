@@ -3084,29 +3084,39 @@
     <bcf:citekey order="11" intorder="1">rs15194699</bcf:citekey>
     <bcf:citekey order="12" intorder="1">10798483</bcf:citekey>
     <bcf:citekey order="13" intorder="1">ZHANG2025108826</bcf:citekey>
-    <bcf:citekey order="14" intorder="1">7995024</bcf:citekey>
-    <bcf:citekey order="15" intorder="1">LU2018142</bcf:citekey>
-    <bcf:citekey order="16" intorder="1">LI2020107038</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">9072473</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">10.1145/3511021</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">Zhou2025</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">9311705</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">10225666</bcf:citekey>
-    <bcf:citekey order="40" intorder="1">7995024</bcf:citekey>
-    <bcf:citekey order="41" intorder="1">LI2020107038</bcf:citekey>
-    <bcf:citekey order="42" intorder="1">10.1145/3511021</bcf:citekey>
-    <bcf:citekey order="43" intorder="1">10225666</bcf:citekey>
-    <bcf:citekey order="44" intorder="1">Zhou2025</bcf:citekey>
-    <bcf:citekey order="45" intorder="1">11435170</bcf:citekey>
-    <bcf:citekey order="46" intorder="1">Meng:24</bcf:citekey>
-    <bcf:citekey order="47" intorder="1">rs16071279</bcf:citekey>
-    <bcf:citekey order="48" intorder="1">Zhou2025Probabilistic</bcf:citekey>
-    <bcf:citekey order="49" intorder="1">11435170</bcf:citekey>
-    <bcf:citekey order="50" intorder="1">10772075</bcf:citekey>
-    <bcf:citekey order="51" intorder="1">Meng:24</bcf:citekey>
-    <bcf:citekey order="52" intorder="1">Zhou2025Probabilistic</bcf:citekey>
-    <bcf:citekey order="53" intorder="1">rs16071279</bcf:citekey>
-    <bcf:citekey order="54" intorder="1" nocite="1">*</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">rs15194699</bcf:citekey>
+    <bcf:citekey order="22" intorder="2">Ke_2023</bcf:citekey>
+    <bcf:citekey order="22" intorder="3">9020130</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">rs15194699</bcf:citekey>
+    <bcf:citekey order="23" intorder="2">Ke_2023</bcf:citekey>
+    <bcf:citekey order="23" intorder="3">9020130</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">10216333</bcf:citekey>
+    <bcf:citekey order="24" intorder="2">rs15194699</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">10798483</bcf:citekey>
+    <bcf:citekey order="25" intorder="2">ZHANG2025108826</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">7995024</bcf:citekey>
+    <bcf:citekey order="27" intorder="1">LU2018142</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">LI2020107038</bcf:citekey>
+    <bcf:citekey order="29" intorder="1">9072473</bcf:citekey>
+    <bcf:citekey order="30" intorder="1">10.1145/3511021</bcf:citekey>
+    <bcf:citekey order="31" intorder="1">Zhou2025</bcf:citekey>
+    <bcf:citekey order="32" intorder="1">9311705</bcf:citekey>
+    <bcf:citekey order="33" intorder="1">10225666</bcf:citekey>
+    <bcf:citekey order="52" intorder="1">7995024</bcf:citekey>
+    <bcf:citekey order="53" intorder="1">LI2020107038</bcf:citekey>
+    <bcf:citekey order="54" intorder="1">10.1145/3511021</bcf:citekey>
+    <bcf:citekey order="55" intorder="1">10225666</bcf:citekey>
+    <bcf:citekey order="56" intorder="1">Zhou2025</bcf:citekey>
+    <bcf:citekey order="57" intorder="1">11435170</bcf:citekey>
+    <bcf:citekey order="58" intorder="1">Meng:24</bcf:citekey>
+    <bcf:citekey order="59" intorder="1">rs16071279</bcf:citekey>
+    <bcf:citekey order="60" intorder="1">Zhou2025Probabilistic</bcf:citekey>
+    <bcf:citekey order="61" intorder="1">11435170</bcf:citekey>
+    <bcf:citekey order="62" intorder="1">10772075</bcf:citekey>
+    <bcf:citekey order="63" intorder="1">Meng:24</bcf:citekey>
+    <bcf:citekey order="64" intorder="1">Zhou2025Probabilistic</bcf:citekey>
+    <bcf:citekey order="65" intorder="1">rs16071279</bcf:citekey>
+    <bcf:citekey order="66" intorder="1" nocite="1">*</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">

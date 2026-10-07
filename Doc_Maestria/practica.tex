@@ -323,6 +323,26 @@ Entre \textbf{2020 y 2023} se centraron más en investigar el desacoplamiento de
 
 Recientemente en los años \textbf{2024 y 2025} surgieron modelos heurísticos avanzados como (MJPNet) \parencite{10798483} y filtros homomórficos acoplados a restricciones físicas con clasificación por factor de riesgo de sesgo cromático \parencite{ZHANG2025108826}. Sin embargo, la complejidad, el consumo computacional, y la rigidez debido a  la dependencia de datasets de entrenamiento causo que sea complicado usarlos en entornos reales sobre todo en sistemas embebidos de AUVs y ROVs en tiempo real.
 
+\begin{table}[htbp]
+  \centering
+  \caption{Resumen de la evolución de métodos físicos y tradicionales de restauración subacuática.}
+  \label{tab:metodos_fisicos_tradicionales}
+  \small
+  \begin{tabularx}{\textwidth}{c l X X}
+    \toprule
+    \textbf{Periodo} & \textbf{Método / Modelo} & \textbf{Parte de interés} & \textbf{Variables y limitaciones principales} \\
+    \midrule
+    2005--2016 & \textbf{DCP y Hardware} & Hardware óptico adaptado y priors atmosféricos terrestres & Entornos controlados; falla por absorción dependiente de $\lambda$ y reflejos de arena \parencite{rs15194699, Ke_2023, 9020130} \\
+    \addlinespace
+    2017--2019 & \textbf{Haze-Lines e IBLA} & Atenuación espectral explícita y profundidad por desenfoque/absorción & Considera atenuación por $\lambda$; colapsa en zonas sin textura y agua cambiante \parencite{rs15194699, Ke_2023, 9020130} \\
+    \addlinespace
+    2020--2023 & \textbf{MCLA y Espacios Lab} & Desacoplamiento óptico, Lambert-Beer y píxeles oscuros adaptativos & Fidelidad cromática; falla ante luz artificial severa (ROVs/AUVs) y sobrecompensa rojo \parencite{10216333, rs15194699} \\
+    \addlinespace
+    2024--2025 & \textbf{MJPNet y Homomórfico} & Modelos heurísticos con restricciones físicas y sesgo cromático & Alta precisión; elevada carga computacional e inviable en tiempo real para embebidos \parencite{10798483, ZHANG2025108826} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
 \subsection*{Evolución de los Modelos de Inteligencia Artificial y Redes Neuronales}
 
 La integración de redes neuronales en la visión subacuática ha seguido una línea histórica de investigación de tres fases claras: una primera etapa enfocada en la mejora de calidad de imágenes degradadas; una segunda dedicada a crear modelos híbridos que estiman variables físicas intermedias (profundidad, transmisión y \textit{backscatter}); y una tercera etapa reciente donde las redes ejecutan calibraciones implícitas o directas sobre el sistema óptico.
