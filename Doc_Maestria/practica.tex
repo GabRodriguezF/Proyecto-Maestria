@@ -34,6 +34,7 @@
 \usepackage{adjustbox}
 \usepackage{pdfpages}
 \usepackage{verbatim}
+\usepackage{enumitem}
 
 % Configuración del tamaño de fuente a 11pt para pies de figuras y tablas (Punto 2)
 \captionsetup{font={small}}
@@ -283,11 +284,24 @@ Actualmente los sistemas de calibración no toman a la temperatura como un pará
 Esta sección incluye dos puntos: El por qué vale la pena realizar este estudio y quiénes se beneficiarán con los resultados. Justifique la razón por la cual el tema es importante. Este apartado está muy relacionado con los antecedentes. Para el caso de la industria la justificación es el resolver su problema o satisfacer una necesidad de la sociedad.
 \end{comment}
 
+El desarrollo de esta investigación se justifica por su relevancia científica, tecnológica e industrial, debido a que aborda una brecha no cubierta en la visión por computadora subacuática: la degradación de la precisión métrica en sistemas de visión para vehículos ROV debido a variaciones térmicas del medio y fluctuaciones de iluminación artificial \parencite{11176009, 10772075}.
+
+En el ámbito científico y tecnológico, se aporta un avance al integrar, en un mismo algoritmo adaptativo, la calibración geométrica y la restauración cromática considerando la temperatura del agua como parámetro. Debido a que la temperatura modifica el índice de refracción del fluido y causa desplazamientos en la distancia focal y en el punto principal del sensor \parencite{11176009}, la incorporación explícita de esta variable mejora la estabilidad de la calibración y la consistencia geométrica en reconstrucciones 3D y mediciones subacuáticas \parencite{10772075}.
+
+Desde el punto de vista aplicado y social, los beneficiarios directos de los resultados de esta tesis incluyen:
+
+\begin{itemize}[noitemsep]
+    \item \textbf{La industria marítima y de inspección de infraestructura subacuática:} Empresas enfocadas en el mantenimiento e inspección no destructiva de ductos, plataformas petroleras, casco de embarcaciones e infraestructura portuaria, las cuales obtendrán mediciones métricas de mayor precisión y menor margen de error sin depender de paros operativos prolongados.
+    \item \textbf{La investigación oceanográfica y biológica:} Científicos e instituciones marinas que requieren cuantificar y mapear estructuras tridimensionales de arrecifes y organismos bentónicos sin alterar físicamente los ecosistemas.
+    \item \textbf{El sector de la robótica subacuática (ROVs y AUVs):} Desarrolladores e integradores de sistemas de navegación autónoma, quienes contarán con una forma de visión más robusta que mantiene su precisión de medición independientemente de las variaciones térmicas y de luz durante misiones profundas o prolongadas.
+\end{itemize}
+
 
 \section{Objetivos}
 \begin{comment}
 Sí bien, los objetivos son actividades con un propósito, se debe de recalcar que los objetivos son las actividades principales del trabajo desarrollado. Por lo que, solo deben de plantearse aquellas que plantean un conocimiento nuevo o una nueva tecnología o sistema a implementarse. Cabe mencionar que los objetivos tienen una estructura que los diferencia de las demás actividades desarrollas en la metodología empleada. Y esta es que tiene un qué y un para qué y en algunas ocasiones se agrega una proposición del cómo se puede llevar a cabo el objetivo. Su redacción comienza con un verbo en infinitivo.
 \end{comment}
+
 
 \subsection{Objetivo General}
 \begin{comment}
