@@ -235,9 +235,21 @@ El glosario es un catálogo de palabras como un antecedente a sus definiciones a
 \begin{comment}
 En este capítulo se deben incluir los siguientes elementos que debieron ser presentados en la Propuesta de Tesis: Antecedentes, Definición del problema, Justificación, Objetivos, Hipótesis.
 La redacción de la introducción no debe ser una ampliación del resumen, así como tampoco una descripción del contexto en el cual está inmerso el trabajo de tesis. En este apartado se debe de exponer de una manera global el estado del arte y del marco teórico y el propósito del trabajo (este objetico (propósito) es muy diferente al expuesto al objetivo de la investigación).
-\end{comment}
+
 Se propone desarrollar un algoritmo robusto de calibración de cámaras submarinas para sistemas de visión de vehículos ROV, capaz de mantener su precisión ante variaciones en las condiciones de adquisición de las imágenes. El algoritmo considerará el efecto de la temperatura del agua, variaciones en los componentes RGB e iluminación, buscando minimizar su influencia sobre los parámetros de calibración. La validación se realizará mediante experimentos controlados en tanque de agua y alberca. Se evaluará el desempeño del método mediante error de reproyección, estabilidad de los parámetros de calibración y precisión en reconstrucción 3D y medición de objetos
 submarinos.
+\end{comment}
+
+La visión subacuática tiene dos fenómenos físicos interconectados que la restringen: la distorsión geométrica causada por el efecto de refracción en la interfaz agua-vidrio-lente, y la degradación radiométrica, causada por la absorción y dispersión (\textit{scattering}) de la luz en el agua \parencite{calZhang, 11176009}. En el marco teórico, la propagación de la luz en el fluido hace que el modelo de cámara estenopeico (\textit{pinhole}) estándar no sea válido, por lo que es necesario considerar explícitamente las variables y propiedades ópticas del medio, como la ley de Lambert-Beer y la variación espectral de los coeficientes de atenuación según la longitud de onda, para lograr tanto la restauración de la calidad cromática como una calibración métrica consistente \parencite{10216333, rs15194699}.
+
+A lo largo de la historia, la investigación se ha centrado y evolucionado a través de 2 vertientes: por un lado, los modelos físicos y tradicionales, que comenzaron usando modelos rígidos centrados en la corrección por refracción \parencite{calZhang} o utilizando \textit{priors} atmosféricos terrestres como el \textit{Dark Channel Prior} (DCP) \parencite{rs15194699, Ke_2023}, y con el tiempo evolucionaron hacia el modelado espectral explícito de curvas y desacoplamiento de fenómenos ópticos en espacios de color. Sin embargo, estos enfoques tomaron el medio como estático, causando serios problemas con luz artificial intensa o regiones sin textura.
+
+Por otro lado, las redes neuronales y el aprendizaje profundo han sido incorporados en la visión subacuática, comenzando con la síntesis de imágenes subacuáticas mediante arquitecturas tipo GAN (\textit{WaterGAN}) \parencite{7995024}, y posteriormente evolucionando hacia modelos híbridos que usan variables físicas como profundidad, transmisión y \textit{backscatter} (\textit{UWCNN}, \textit{Deep WaveNet}, NeRFs submarinos) \parencite{LI2020107038, 10.1145/3511021, 10225666}. Más recientemente, se han desarrollado redes neuronales de regresión y marcos de optimización probabilística para la calibración implícita o directa de los parámetros intrínsecos de la cámara \parencite{10772075, Meng:24, Zhou2025Probabilistic}.
+
+Aun tras todo esto, hay limitaciones técnicas no resueltas: primeramente, los métodos actuales tienen un alto consumo computacional, haciendo complicada su ejecución en sistemas embebidos de ROVs \parencite{ZHANG2025108826}; aparte de esto, la literatura ignora la temperatura del agua como parámetro de calibración, siendo que esta altera directamente el índice de refracción del agua y, por lo tanto, la geometría focal.
+
+Con esto, el propósito de este trabajo es desarrollar e implementar un algoritmo robusto de calibración y restauración adaptativa para sistemas de visión submarina en vehículos ROV. Buscando compensar tanto las variaciones térmicas del agua, la atenuación o variación de componentes RGB y los cambios de iluminación, minimizando así la degradación de la imagen durante su adquisición. La validación de este sistema se realizará en un entorno controlado, siendo un tanque de agua y una alberca, evaluándolo mediante el error de reproyección, la estabilidad de los parámetros de calibración y la precisión en reconstrucción 3D, además de la medición de objetos submarinos.
+
 
 \section{Antecedentes}
 \begin{comment}
@@ -308,7 +320,9 @@ La hipótesis es una proposición comprobable, redactada en presente y una de la
 \section{Análisis del estado del arte}
 \begin{comment}
 Aquí se debe de hacer un análisis de todas las investigaciones que se relacionan con el trabajo realizado, pero sobre todo se debe de incluir o criticar como es que contribuyen o contribuyeron en el desarrollo del trabajo. Esta sección es el fundamento de la redacción de la hipótesis, así como también de aquí, se toman las proposiciones que apoyan el argumento del problema. También de aquí se toman las técnicas, métodos (matemáticos, físicos entre otros) o procedentes que ayudaron a plantear la metodología que se llevó a cabo en el proyecto.
+
 \end{comment}
+
 
 La visión subacuática tiene 2 principales desafíos, la distorsión geométrica causada por la refracción en el agua-vidrio-aire que tiene la cámara, y la degradación radiométrica (pérdida de contraste, atenuación cromática y dispersión), principalmente provocada porque el agua absorbe y dispersa la luz que recibe. Desde hace muchos años la calibración de las cámaras que se usan en entornos submarinos se realizó con modelos geométricos rígidos, que estaban centrados en la corrección por refracción, siendo el método de Zhang \parencite{calZhang} el más representativo. Pero estos enfoques no toman en cuenta otros factores ambientales, como la temperatura, la salinidad, la iluminación, o incluso la interacción de la luz con el medio en sí \parencite{11176009}. Con el paso de los años estos métodos de restauración y calibración han avanzado a través de modelos físicos orientados a la física del medio, y más reciente, usando inteligencia artificial y redes neuronales.
 
