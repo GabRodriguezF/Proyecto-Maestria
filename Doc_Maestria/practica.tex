@@ -269,6 +269,14 @@ Esto causó que investigara los antecedentes, descubriendo un área de oportunid
 Un tema bien definido implica un buen porcentaje de avance del trabajo. Exponerlo vagamente origina cuestionamientos irrelevantes o desviaciones del objetivo. Se necesita formular el problema específico en términos concretos y explícitos, de manera que sea susceptible de investigarse con procedimientos científicos. El enunciado debe redactarse en forma de aseveración. Posteriormente, los conceptos pueden tratarse con mayor profundidad. La redacción de un problema tiene que ser en forma de un argumento, es decir, tiene que tener proposiciones como antecedentes y una proposición como concluyente. Las proposiciones de antecedentes describen el campo donde está inmersa la problemática, ejemplo: el tipo de industria donde se plantea el problema, el campo de la ciencia o el desarrollo tecnológico. Además, algunas proposiciones de investigaciones o desarrollos tecnológicos que preceden el trabajo. La proposición concluyente es el problema a resolver.
 \end{comment}
 
+La calibración en sistemas de visión en ROVs es algo crítico para poder garantizar exactitud en tareas como la inspección, medición subacuática y reconstrucción 3D.
+
+La degradación en imágenes submarinas ocurre principalmente por 2 fenómenos: la distorsión geométrica por la refracción múltiple en las interfaces ópticas y la atenuación radiométrica, por la absorción y dispersión de la luz. Actualmente, los métodos de calibración tratan la geometría de la cámara y la restauración cromática en bloques independientes, o en algoritmos muy complejos y con costes computacionalmente altos para su uso embebido.
+
+Existe evidencia reciente que ha demostrado que la temperatura del agua afecta directamente a las propiedades ópticas, debido a que varía su índice de refracción, causa desplazamientos en la distancia focal y causa errores de reproyección.
+
+Actualmente los sistemas de calibración no toman a la temperatura como un parámetro variable, omitiendo así el efecto que esta causa en el sistema. En consecuencia, no hay un sistema de calibración de cámaras submarinas que sea adaptativo y geométricamente consistente a las variaciones de temperatura, los cambios en la iluminación y en los componentes RGB, lo que provoca un aumento en el error de reproyección y pérdida de precisión en mediciones y reconstrucción 3D.
+
 
 \section{Justificación}
 \begin{comment}
