@@ -317,7 +317,7 @@ Se propone desarrollar un algoritmo robusto de calibración de cámaras submarin
 submarinos.
 \end{comment}
 
-Desarrollar un algoritmo robusto de calibración de cámaras subacuáticas en sistemas de visión de vehículos ROV, capaz de mantener su precisión ante variaciones en las condiciones de adquisición de la imagen, debe considerar de forma integrada las variaciones de temperatura del agua, la variación en componentes RGB y los cambios de iluminación, a fin de mantener la precisión métrica y la consistencia geométrica en tareas de medición y reconstrucción 3D.
+Desarrollar un algoritmo robusto de calibración de cámaras subacuáticas en sistemas de visión de vehículos ROV, capaz de mantener su precisión ante variaciones en las condiciones de adquisición de la imagen, debe considerarse de forma integrada las variaciones de temperatura del agua, la variación en componentes RGB y los cambios de iluminación, a fin de mantener la precisión métrica y la consistencia geométrica en tareas de medición y reconstrucción 3D.
 
 \subsection{Objetivos Específicos}
 \begin{comment}
@@ -328,9 +328,9 @@ Los objetivos específicos indican con precisión los conceptos, variables o dim
 
 \begin{itemize}[noitemsep]
     \item Medir la influencia de la temperatura del agua sobre el índice de refracción del medio y su impacto directo en los parámetros intrínsecos de la cámara (distancia focal, punto principal y distorsión).
-    \item Medir la influencia de las variaciones de los componentes RGB, la dispersión cromática (sesgo azul-verde), perdida de gradientes, desplazamiento del punto principal y la distancia focal.
-    \item Medir la influencia de las variaciones de iluminación en la imagen, como los gradientes no uniformes.
-    \item Desarrollar un algoritmo que integre estos 3 componentes para realizar una calibración adaptable de la cámara.
+    \item Modelar la influencia de las variaciones de los componentes RGB, la dispersión cromática (sesgo azul-verde), pérdida de gradientes, desplazamiento del punto principal y la distancia focal.
+    \item caracterizar la influencia de las variaciones de iluminación en la imagen, como los gradientes no uniformes.
+    \item Desarrollar un algoritmo que integre estos tres componentes para realizar una calibración adaptativa de la cámara.
     \item Evaluar el desempeño del algoritmo mediante la cuantificación del error de reproyección, la estabilidad de los parámetros intrínsecos y la exactitud en la medición de objetos y reconstrucción 3D.
 \end{itemize}
 
@@ -357,6 +357,8 @@ La hipótesis está muy relacionada con el problema, el objetivo, el estado del 
 
 La hipótesis es una proposición comprobable, redactada en presente y una de la forma comprables es mediante la contrastación.
 \end{comment}
+
+Un algoritmo adaptativo de calibración de cámaras de sistemas de visión subacuática que integra de manera simultánea el modelado de las variaciones térmicas del agua, la compensación de los componentes RGB y la corrección de gradientes no uniformes de las variaciones  de iluminación, permite mantener la estabilidad de los parámetros intrínsecos de la cámara, reducir el error de reproyección y preservar la exactitud métrica en tareas de medición y reconstrucción tridimensional, superando en desempeño y consistencia geométrica a los métodos de calibración convencionales estáticos ante condiciones ambientales cambiantes.
 
 % =====================================================================================
 % =====================================================================================
