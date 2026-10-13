@@ -311,7 +311,13 @@ forma de medir si los objetivos están correctamente redactados es pensar que é
 El objetivo general está relacionado con la proposición concluyente del argumento del
 problema. Por lo que, la proposición ayuda a redactar el objetivo general. Solo debe de
 haber un objetivo general y en su redacción solo se debe redactar con un solo verbo.
+
+
+Se propone desarrollar un algoritmo robusto de calibración de cámaras submarinas para sistemas de visión de vehículos ROV, capaz de mantener su precisión ante variaciones en las condiciones de adquisición de las imágenes. El algoritmo considerará el efecto de la temperatura del agua, variaciones en los componentes RGB e iluminación, buscando minimizar su influencia sobre los parámetros de calibración. La validación se realizará mediante experimentos controlados en tanque de agua y alberca. Se evaluará el desempeño del método mediante error de reproyección, estabilidad de los parámetros de calibración y precisión en reconstrucción 3D y medición de objetos
+submarinos.
 \end{comment}
+
+Desarrollar un algoritmo robusto de calibración de cámaras subacuáticas en sistemas de visión de vehículos ROV, capaz de mantener su precisión ante variaciones en las condiciones de adquisición de la imagen, debe considerar de forma integrada las variaciones de temperatura del agua, la variación en componentes RGB y los cambios de iluminación, a fin de mantener la precisión métrica y la consistencia geométrica en tareas de medición y reconstrucción 3D.
 
 \subsection{Objetivos Específicos}
 \begin{comment}
@@ -319,6 +325,14 @@ Los objetivos específicos también deben ser presentados en esta sección. Prov
 
 Los objetivos específicos indican con precisión los conceptos, variables o dimensiones que fueron objeto de estudio.
 \end{comment}
+
+\begin{itemize}[noitemsep]
+    \item Medir la influencia de la temperatura del agua sobre el índice de refracción del medio y su impacto directo en los parámetros intrínsecos de la cámara (distancia focal, punto principal y distorsión).
+    \item Medir la influencia de las variaciones de los componentes RGB, la dispersión cromática (sesgo azul-verde), perdida de gradientes, desplazamiento del punto principal y la distancia focal.
+    \item Medir la influencia de las variaciones de iluminación en la imagen, como los gradientes no uniformes.
+    \item Desarrollar un algoritmo que integre estos 3 componentes para realizar una calibración adaptable de la cámara.
+    \item Evaluar el desempeño del algoritmo mediante la cuantificación del error de reproyección, la estabilidad de los parámetros intrínsecos y la exactitud en la medición de objetos y reconstrucción 3D.
+\end{itemize}
 
 \subsection{Objetivos particulares}
 \begin{comment}
@@ -328,6 +342,11 @@ No siempre se debe de incluir estos objetivos secundarios. Mucho depende de la n
 
 Cabe mencionar que no se deben de plantear como objetivos actividades esenciales que fueron necesarias en el desarrollo de la investigación, por ejemplo: si se realizó un diseño de experimentos para determinar qué importancia tenían estas variables esto fue fundamental en el desarrollo del proyecto, pero no es un objetivo.
 \end{comment}
+
+\begin{itemize}[noitemsep]
+    \item Diseñar e instrumentar un banco de pruebas experimental controlado (tanque acuático y alberca) equipado con sensores de temperatura, monitoreo de color e iluminación regulable.
+    \item Implementar e integrar el algoritmo desarrollado en el hardware embebido en la arquitectura del vehículo ROV académico.
+\end{itemize}
 
 
 \section{Hipótesis}
