@@ -149,7 +149,7 @@
 \begin{flushleft}
 \large
 \textbf{Director de Tesis:} Dr. Tomas Salgado Jiménez \\
-\textbf{Codirector / Asesor:} M. en C. Cristian Hamilton Sánchez Saquín
+\textbf{Codirector / Asesor:} Dr. Cristian Hamilton Sánchez Saquín
 \end{flushleft}
 
 \vspace{0.5cm}
@@ -482,6 +482,7 @@ La organización de este apartado puede ser en forma histórica o cronológica, 
 \end{comment}
 
 
+
 % =====================================================================================
 % =====================================================================================
 % =====================================================================================
@@ -497,6 +498,64 @@ Este Capítulo debe indicar todas las actividades realizadas: pruebas piloto, es
 El tipo de material que se utilizó se debe de describir con todas sus características principales, composición, estructura, constantes físicas o químicas etc. El equipo utilizado se debe de justificar y describir las características que tiene. Se debe de pensar que si alguien requiere reproducir el trabajo realizado debe de considerar todas las características y propiedades de los equipos y materiales utilizados para reproducir los resultados presentados.
 \end{comment}
 
+
+\subsection{Materiales y Materias Primas}
+\begin{itemize}
+  \item Pecera de paredes de cristal de 1.5 metros de largo, 1 metro de ancho, y 1 metro de alto.
+  \item Piscina de agua dulce, de 1.2 metros y 2.5 metros de profundidad.
+  \item Tablero de calibración impreso en hoja Bond, con patrón ajedrezado con cuadros de 25 milímetros exactos, sin separación ninguna entre las esquinas de los cuadrados negros.
+  \item Cámara submarina (\textit{DeepWater Exploration})
+  \item Sistema de monitoreo y control de temperatura del agua de la planta.
+  \item Sistema de monitoreo y control del color del agua de la planta.
+  \item Sistema de monitoreo y control de la luz en el agua de la planta.
+\end{itemize}
+
+\subsection{Diseño Experimental y Variables}
+\begin{itemize}
+  \item Temperatura
+  \item Componentes RGB
+  \item Iluminación
+\end{itemize}
+
+\subsection{Procedimiento Experimental / Procesamiento}
+Para poder realizar el cumplimiento de los objetos, se usó la siguiente metodología:
+\subsubsection{Creación de la planta}
+
+\textbf{Para el control y monitoreo de la temperatura}, se empleó una pecera de cristal para la base de la planta donde se trabajó, en la cual se le colocaron 3 resistencias eléctricas para agua, a una distancia de 500mm entre ellas y sensores de temperatura tipo termopar son sus cables encapsulados, en una zona muy próxima (alrededor de 2 centímetros) de cada resistencia eléctrica para que fuerte posible realizar una medición correcta de la temperatura en todo el fluido.
+
+\textbf{Para el control y monitoreo de los componentes RGB}, se empleó la misma pecera de cristal, en la cual por medio de un sensor de color previamente calibrado 
+
+\textbf{Para el control y monitoreo de la iluminación}
+
+\subsubsection{Toma de muestras de variables individuales y análisis de los datos}
+-Toma de muestras de imágenes con variaciones en la temperatura, desde puntos distintos, con luz y color constante, a diferentes distancias y ángulos respecto al tablero de calibración
+
+- Análisis de estos datos y a su impacto directo en la matriz de calibración de la cámara y en la distancia focal de la misma, por medio de Zhang y Bouget\\
+
+
+-Toma de muestras de imágenes con variaciones en la los componentes RGB, principalmente en sus 3 canales principales RGB, desde puntos distintos, con luz y temperatura constante, a diferentes distancias y ángulos respecto al tablero de calibración
+
+- Análisis de estos datos y a su impacto directo en la matriz de calibración de la cámara, así a la perdida de información en su uso en la creación de filtros comvolucionales.\\
+
+-Toma de muestras de imágenes con variaciones en la iluminación, tanto en posición, así como en intensidad, desde puntos distintos, con temperatura y color constante, a diferentes distancias y ángulos respecto al tablero de calibración
+
+- Análisis de estos datos y a su impacto directo en la matriz de calibración de la cámara, la perdida de negros y blancos, aumento de reflejos que dañen al sistema, o falta de luz para la detección normal del sensor de la cámara.
+
+\subsubsection{Toma de muestras del comportamiento conjunto de temperatura, color, e iluminación; y análisis de los datos obtenidos}
+-Toma de muestras de imágenes con variaciones en la iluminación, en sus componentes RGB, y en la intensidad y posición de luz, desde puntos distintos, con combinaciones de una variable constante, 2 constantes, variaciones totales, a diferentes distancias y ángulos respecto al tablero de calibración
+
+- Análisis de estos datos y a su impacto directo en la matriz de calibración de la cámara, 
+
+\subsubsection{Investigación y análisis dé posibles estructuras de redes y entrenamiento del algoritmo escogido}
+
+\subsubsection{Creación del sistema de medición y reconstrucción a partir de imágenes}
+
+\subsubsection{Evaluación del desempeño del algoritmo}
+
+
+\subsection{Técnicas de Caracterización y Evaluación}
+
+\subsection{Análisis Estadístico o de Datos}
 
 % =====================================================================================
 % =====================================================================================
