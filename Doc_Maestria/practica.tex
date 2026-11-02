@@ -538,21 +538,42 @@ Para poder realizar el cumplimiento de los objetos, se usó la siguiente metodol
 
 \textbf{Para el control y monitoreo de los componentes RGB}, se empleó la misma pecera de cristal, en la cual por medio de un sensor de color previamente calibrado, se modifica el color del agua con diversos tintes para que tenga un color uniforme y constante.
 
-\textbf{Para el control y monitoreo de la iluminación}, usando la misma pecera de cristal, se colocaron 3 focos LED de 100W cada uno, con un sistema de control de intensidad y posición, para poder variar la iluminación en el agua.
+\textbf{Para el control y monitoreo de la iluminación}, usando la misma pecera de cristal, se colocaron 3 focos LED de 100W cada uno, con un sistema de control de intensidad y posición, para poder variar la iluminación en el agua.\\
+
+\textbf{\textit{Se completó esta sección con la entrega de la planta funcional para las 3 variables descritas anteriormente.}}
 
 \subsubsection{Toma de muestras de variables individuales y análisis de los datos}
--Toma de muestras de imágenes con variaciones en la temperatura, desde puntos distintos, con luz y color constante, a diferentes distancias y ángulos respecto al tablero de calibración
+Se realizó la toma de muestras de cada una de las 3 variables de manera individual, para ello se siguieron los siguientes pasos:
 
-- Análisis de estos datos y a su impacto directo en la matriz de calibración de la cámara y en la distancia focal de la misma, por medio de Zhang y Bouget\\
+\begin{enumerate}
+  \item Se colocó el tablero de calibración a una distancia de 1 metro de la cámara.
+  \item Se tomaron varias imágenes del tablero de calibración, 10 por cada ángulo, antes de modificar la distancia. Esto para tener un control de la información antes de realizar variaciones en las variables.
+  \item Se modificó la temperatura del agua de manera uniforme.
+  \begin{itemize}
+    \item Se tomaron varias imágenes del tablero de calibración, 10 por cada ángulo, antes de modificar la distancia. Con la temperatura constante.
+    \item Se modificó la temperatura del agua a un valor distinto, y se repitió el paso anterior.
+    \item Se modifica solo una sección de la pecera para que la temperatura no sea uniforme, y se repite el paso anterior.
+    \item Todo el procedimiento se repite varias veces hasta tener un conjunto de datos suficiente para el análisis.
+  \end{itemize}
+  \item Análisis de estos datos y a su impacto directo en la matriz de calibración de la cámara y en la distancia focal de la misma, por medio de Zhang y Bouget.
+  \item Se modificó el color del agua, solo modificando un componente RGB.
+  \begin{itemize}
+    \item Se tomaron varias imágenes del tablero de calibración, 10 por cada ángulo, antes de modificar la distancia. Manteniendo color constante.
+    \item Se modificó el color del agua aumentando otro componente diferente, y se repitió el paso anterior.
+    \item Se modificó el color del agua aumentando el último componente faltante, y se repitió todas las mediciones.
+    \item Todo el procedimiento se repite varias veces hasta tener un conjunto de datos suficiente para el análisis.
+  \end{itemize}
+  \item Análisis de estos datos y a su impacto directo en la matriz de calibración de la cámara, así a la perdida de información en su uso en la creación de filtros convolucionales.
+    \item Se modificó la iluminación del agua.
+  \begin{itemize}
+    \item Se tomaron varias imágenes del tablero de calibración, 10 por cada ángulo, antes de modificar la distancia. Manteniendo la iluminación constante.
+    \item Se modificó la intensidad de la iluminación del agua, y se repitió el paso anterior.
+    \item Se modificó la posición de la iluminación del agua, y se repitió el paso anterior.
+    \item Todo el procedimiento se repite varias veces hasta tener un conjunto de datos suficiente para el análisis.
+  \end{itemize}
+  \item Análisis de estos datos y a su impacto directo en la matriz de calibración de la cámara, la perdida de negros y blancos, aumento de reflejos que dañen al sistema, o falta de luz para la detección normal del sensor de la cámara.
+\end{enumerate}
 
-
--Toma de muestras de imágenes con variaciones en la los componentes RGB, principalmente en sus 3 canales principales RGB, desde puntos distintos, con luz y temperatura constante, a diferentes distancias y ángulos respecto al tablero de calibración
-
-- Análisis de estos datos y a su impacto directo en la matriz de calibración de la cámara, así a la perdida de información en su uso en la creación de filtros comvolucionales.\\
-
--Toma de muestras de imágenes con variaciones en la iluminación, tanto en posición, así como en intensidad, desde puntos distintos, con temperatura y color constante, a diferentes distancias y ángulos respecto al tablero de calibración
-
-- Análisis de estos datos y a su impacto directo en la matriz de calibración de la cámara, la perdida de negros y blancos, aumento de reflejos que dañen al sistema, o falta de luz para la detección normal del sensor de la cámara.
 
 \subsubsection{Toma de muestras del comportamiento conjunto de temperatura, color, e iluminación; y análisis de los datos obtenidos}
 -Toma de muestras de imágenes con variaciones en la iluminación, en sus componentes RGB, y en la intensidad y posición de luz, desde puntos distintos, con combinaciones de una variable constante, 2 constantes, variaciones totales, a diferentes distancias y ángulos respecto al tablero de calibración
