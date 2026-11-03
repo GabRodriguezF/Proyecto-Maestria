@@ -3138,7 +3138,25 @@
     <bcf:citekey order="77" intorder="1">Zhou2025Probabilistic</bcf:citekey>
     <bcf:citekey order="78" intorder="1">rs16071279</bcf:citekey>
     <bcf:citekey order="79" intorder="1">calZhang</bcf:citekey>
-    <bcf:citekey order="80" intorder="1" nocite="1">*</bcf:citekey>
+    <bcf:citekey order="80" intorder="1">Agrawal2012</bcf:citekey>
+    <bcf:citekey order="80" intorder="2">Sedlazeck2012</bcf:citekey>
+    <bcf:citekey order="81" intorder="1">Agrawal2012</bcf:citekey>
+    <bcf:citekey order="82" intorder="1">Sedlazeck2012</bcf:citekey>
+    <bcf:citekey order="83" intorder="1">Quan1995</bcf:citekey>
+    <bcf:citekey order="84" intorder="1">11176009</bcf:citekey>
+    <bcf:citekey order="85" intorder="1">11176009</bcf:citekey>
+    <bcf:citekey order="86" intorder="1">Mobley1994</bcf:citekey>
+    <bcf:citekey order="87" intorder="1">10216333</bcf:citekey>
+    <bcf:citekey order="88" intorder="1">10.1145/3511021</bcf:citekey>
+    <bcf:citekey order="89" intorder="1">10772075</bcf:citekey>
+    <bcf:citekey order="90" intorder="1">Jaffe1990</bcf:citekey>
+    <bcf:citekey order="91" intorder="1">Zhou2025</bcf:citekey>
+    <bcf:citekey order="92" intorder="1">hamilton2024</bcf:citekey>
+    <bcf:citekey order="93" intorder="1">Hartley2004</bcf:citekey>
+    <bcf:citekey order="94" intorder="1">10772075</bcf:citekey>
+    <bcf:citekey order="94" intorder="2">Meng:24</bcf:citekey>
+    <bcf:citekey order="95" intorder="1">calZhang</bcf:citekey>
+    <bcf:citekey order="96" intorder="1" nocite="1">*</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">

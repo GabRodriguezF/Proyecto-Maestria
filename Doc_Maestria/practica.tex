@@ -171,20 +171,27 @@
 
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen}
+\begin{comment}
 El resumen es una síntesis del trabajo final que hace hincapié en sus puntos sobresalientes.
 Toda la información que contiene la tesis debe estar comprendida en el resumen. El objetivo de incluirse es evitar que el lector tenga que leer todo el trabajo. Sin estos resúmenes, sería difícil para los profesionales mantenerse al día en su área. Por otra parte, este resumen puede lograr que el lector se motive a leer el informe completo. En cuanto a la redacción del resumen, este puede estar escrito en tiempo pasado, ya que es la historia del trabajo terminado, o en tiempo presente, ya que constituye la aportación global al área específica. Debe cuidar cada palabra que escriba. Es una síntesis de la tesis que destaca los puntos sobresalientes, donde no se incluye ninguna interpretación de la misma. La mejor manera de redactar un resumen es pensar en una llamada de larga distancia en la que usted relata a un amigo en que consiste su trabajo. El resumen debe contener entre 250 y 500 palabras, ocupando una sola página. Recuerde que debe ser breve. El resumen debe de incluir los siguientes puntos: La descripción del problema de una forma muy breve (pueden ser 2 proposiciones: una proposición antecedente y una proposición concluyente); una breve descripción de la solución; los objetivos y de una forma muy breve los resultados obtenidos.
+\end{comment}
+La percepción visual en sistemas de visión para vehículos operados remotamente (ROVs) se encuentra limitada por dos fenómenos físicos interconectados: la distorsión geométrica provocada por la refracción en la interfaz multicapa agua-vidrio-aire, y la degradación radiométrica por la absorción y dispersión selectiva de la luz. Los métodos de calibración convencionales tratan la geometría y la restauración cromática de forma aislada, o utilizan modelos profundos de alta carga computacional inviables para sistemas embebidos. Además, la literatura existente omite el efecto de las variaciones térmicas del agua ($T$), las cuales modifican el índice de refracción del fluido $n(T)$ y desplazan los parámetros intrínsecos de la cámara.
+
+Para solucionar esta problemática, este trabajo propone el desarrollo e implementación de un algoritmo adaptativo de calibración y restauración cromática. El objetivo general es mantener la precisión métrica y la consistencia geométrica del sistema de visión ante fluctuaciones simultáneas de temperatura, variaciones en los componentes RGB y cambios en la iluminación artificial. La metodología contempló el diseño e instrumentación de un banco de pruebas controlado (estanque y alberca) para la captura de un dataset multivariable acoplado, evaluando la deriva paramétrica mediante optimización no lineal y análisis de varianza (ANOVA).
 
 \vspace{1em}
-\noindent\textbf{Palabras clave:} Calibración submarina, visión por computadora, sistemas embebidos, variación térmica, restauración espectral.
+\noindent\textbf{Palabras clave:} Calibración submarina, visión por computadora, sistemas embebidos, variación térmica, restauración espectral, reconstrucción 3D.
 
 \cleardoublepage
 
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-The summary synthesizes the final work that emphasizes its salient points. All the information contained in the thesis must be included in the abstract. The purpose of inclusion is to avoid the reader having to read the entire work. Without these summaries, it would be difficult for professionals to keep up-to-date in their area. On the other hand, this summary can motivate the reader to read the full report. Regarding the writing of the summary, it can be written in the past tense, since it is the history of the completed work, or in the present tense since it constitutes the global contribution to the specific area. You must take care of every word you write. It is a thesis synthesis that highlights the salient points, where no interpretation of it is included. An excellent way to write a summary is to think of a long-distance call in which you tell a friend what your job consists of. The abstract must contain between 250 and 500 words, occupying a single page. Remember to keep it brief. The abstract must include the following points: A very brief description of the problem (there can be 2 propositions: an antecedent proposition and a conclusive proposition); a brief description of the solution; the objectives and in a very brief way the results obtained.
+Visual perception in vision systems for Remotely Operated Vehicles (ROVs) is severely constrained by two interconnected physical phenomena: geometric distortion caused by refraction at the multi-layer water-glass-air interface, and radiometric degradation due to wavelength-dependent light absorption and scattering. Conventional calibration methods address geometry and color restoration separately, or rely on heavy deep learning models that are computationally unfeasible for embedded systems. Furthermore, current literature ignores water temperature variations ($T$), which alter the fluid's refractive index $n(T)$ and shift the camera's intrinsic parameters.
+
+To address this limitation, this work proposes the development and implementation of a adaptive calibration and color restoration algorithm. The main objective is to preserve metric accuracy and geometric consistency under simultaneous fluctuations in water temperature, RGB spectral attenuation, and artificial lighting changes. The methodology involved designing and instrumenting a controlled experimental test bench (tank and pool) to collect a coupled multivariable dataset, evaluating parametric drift via non-linear optimization and two-way ANOVA.
 
 \vspace{1em}
-\noindent\textbf{Keywords:} Underwater calibration, computer vision, embedded systems, thermal variation, spectral restoration.
+\noindent\textbf{Keywords:} Underwater calibration, computer vision, embedded systems, thermal variation, spectral restoration, 3D reconstruction.
 
 \cleardoublepage
 
@@ -317,7 +324,7 @@ Se propone desarrollar un algoritmo robusto de calibración de cámaras submarin
 submarinos.
 \end{comment}
 
-Desarrollar un algoritmo robusto de calibración de cámaras subacuáticas en sistemas de visión de vehículos ROV, capaz de mantener su precisión ante variaciones en las condiciones de adquisición de la imagen, debe considerarse de forma integrada las variaciones de temperatura del agua, la variación en componentes RGB y los cambios de iluminación, a fin de mantener la precisión métrica y la consistencia geométrica en tareas de medición y reconstrucción 3D.
+Desarrollar un algoritmo robusto de calibración de cámaras subacuáticas en sistemas de visión de vehículos ROV, capaz de mantener su precisión ante variaciones en las condiciones de adquisición de la imagen, que considere de forma integrada las variaciones de temperatura del agua, la variación en componentes RGB y los cambios de iluminación, a fin de mantener la precisión métrica y la consistencia geométrica en tareas de medición y reconstrucción 3D.
 
 \subsection{Objetivos Específicos}
 \begin{comment}
@@ -329,7 +336,7 @@ Los objetivos específicos indican con precisión los conceptos, variables o dim
 \begin{itemize}[noitemsep]
     \item Medir la influencia de la temperatura del agua sobre el índice de refracción del medio y su impacto directo en los parámetros intrínsecos de la cámara (distancia focal, punto principal y distorsión).
     \item Modelar la influencia de las variaciones de los componentes RGB, la dispersión cromática (sesgo azul-verde), pérdida de gradientes, desplazamiento del punto principal y la distancia focal.
-    \item caracterizar la influencia de las variaciones de iluminación en la imagen, como los gradientes no uniformes.
+    \item Caracterizar la influencia de las variaciones de iluminación en la imagen, como los gradientes no uniformes.
     \item Desarrollar un algoritmo que integre estos tres componentes para realizar una calibración adaptativa de la cámara.
     \item Evaluar el desempeño del algoritmo mediante la cuantificación del error de reproyección, la estabilidad de los parámetros intrínsecos y la exactitud en la medición de objetos y reconstrucción 3D.
 \end{itemize}
@@ -481,7 +488,85 @@ Una vez analizados los fundamentos, es importante que usted conceptualice con cl
 La organización de este apartado puede ser en forma histórica o cronológica, es decir, los encabezados pueden determinarse por orden de fechas. El orden puede ser descendente o ascendente, dependiendo del objetivo de su trabajo. Las características esenciales del tema también pueden servir de guía en la redacción de esta sección. Otra posibilidad de organización son los pros y los contras, ir de lo simple a lo complejo, de lo general a lo específico, de menor a mayor o por causa y efecto, entre otras.
 \end{comment}
 
+Para el desarrollo del algoritmo de calibración adaptativa y restauración cromática se necesita de los fundamentos en los principios de la óptica geométrica multicapa, la termodinámica de fluidos y el modelado radiométrico de la luz en medios atenuantes.
 
+\subsection{Modelo de Cámara y Refracción Multicapa en Puerto Plano}
+
+En el aire, la proyección de un punto tridimensional $\mathbf{P} = [X, Y, Z]^T$ sobre el plano imagen $\mathbf{p} = [u, v, 1]^T$ se describe mediante el modelo de cámara estenopeico (\textit{pinhole}) estándar \parencite{calZhang}:
+
+\begin{equation}
+s \mathbf{p} = \mathbf{K} [\mathbf{R} \mid \mathbf{t}] \mathbf{P}
+\end{equation}
+
+donde $s$ es un factor de escala, $[\mathbf{R} \mid \mathbf{t}]$ representa la matriz de transformación extrínseca (rotación y traslación) y $\mathbf{K}$ es la matriz de parámetros intrínsecos definida por:
+
+\begin{equation}
+\mathbf{K} = \begin{bmatrix} f_x & s_{xy} & c_x \\ 0 & f_y & c_y \\ 0 & 0 & 1 \end{bmatrix}
+\end{equation}
+
+siendo $(f_x, f_y)$ la distancia focal expresada en píxeles, $(c_x, c_y)$ las coordenadas del punto principal u origen óptico, y $s_{xy}$ el factor de sesgo (\textit{skew}).
+
+Al sumergir la cámara dentro de un estanque protector de ventana plana (\textit{flat-port}), el rayo luminoso atraviesa tres medios con índices de refracción distintos: agua ($n_{\text{agua}}$), vidrio ($n_{\text{vidrio}}$) y aire ($n_{\text{aire}}$). Aplicando la Ley de Snell en cada interfaz física \parencite{Agrawal2012, Sedlazeck2012}:
+
+\begin{equation}
+n_{\text{agua}} \sin(\theta_{\text{agua}}) = n_{\text{vidrio}} \sin(\theta_{\text{vidrio}}) = n_{\text{aire}} \sin(\theta_{\text{aire}})
+\end{equation}
+
+Como demostraron Agrawal et al. \parencite{Agrawal2012} y Sedlazeck \& Koch \parencite{Sedlazeck2012}, la refracción en interfaces planas no paralelas a los rayos salientes rompe la suposición del centro de proyección único (\textit{single viewpoint assumption}). Esto introduce una distorsión radial no lineal dependiente de la profundidad del objeto que desplaza la posición efectiva del centro óptico $(c_x, c_y)$ e incrementa la distancia focal aparente por un factor proporcional al índice del medio: $f_{\text{sub}} \approx n_{\text{agua}} \cdot f_{\text{aire}}$.
+
+\subsection{Modelo Térmico del Índice de Refracción $n(T)$ y Deriva Paramétrica}
+
+El índice de refracción del agua $n_{\text{agua}}$ no es una constante estática; varía dinámicamente en función de la temperatura del fluido $T$, la salinidad y la longitud de onda de la luz $\lambda$. De acuerdo con la formulación empírica de Quan \& Fry \parencite{Quan1995}, el comportamiento refractivo en el medio acuoso se modela cuantitativamente mediante:
+
+\begin{equation}
+n_{\text{agua}}(T, \lambda) = n_0 + \left( \frac{\partial n}{\partial T} \right) (T - T_0) + \left( \frac{\partial n}{\partial \lambda} \right) (\lambda - \lambda_0)
+\end{equation}
+
+Puesto que el gradiente termo-óptico es negativo ($\frac{\partial n}{\partial T} < 0$), un incremento en la temperatura reduce la densidad del agua y, consecuentemente, su índice de refracción. Como probaron recientemente Sánchez-Saquín et al. \parencite{11176009}, esta variación altera el ángulo refractado $\theta_{\text{agua}}$ al atravesar el visor de la cámara, induciendo una deriva paramétrica continua en la matriz intrínseca del sensor:
+
+\begin{equation}
+\mathbf{K}(T) = \begin{bmatrix} f_x(T) & s_{xy} & c_x(T) \\ 0 & f_y(T) & c_y(T) \\ 0 & 0 & 1 \end{bmatrix}
+\end{equation}
+
+Ignorar la dependencia $n(T)$ al emplear una matriz estática $\mathbf{K}_0$ (calibrada a temperatura ambiente fija) genera un desajuste geométrico no compensado que incrementa progresivamente el error de reproyección $e_{rep}$ a medida que el fluido experimenta fluctuaciones térmicas $\Delta T = |T - T_0|$ \parencite{11176009}.
+
+\subsection{Atenuación Espectral por Canal RGB y Ley de Lambert-Beer}
+
+La degradación radiométrica de las imágenes subacuáticas está gobernada por la teoría de transferencia de radiación en medios acuáticos \parencite{Mobley1994}. La irradiancia transmitida $I_\lambda(d)$ a una distancia de propagación $d$ para cada canal espectral $\lambda \in \{R, G, B\}$ sigue la Ley de Lambert-Beer \parencite{10216333}:
+
+\begin{equation}
+I_\lambda(d) = I_{0, \lambda} \, e^{-c(\lambda) d}
+\end{equation}
+
+donde $c(\lambda) = a(\lambda) + b(\lambda)$ representa el coeficiente de atenuación total, integrado por la absorción $a(\lambda)$ y la dispersión o \textit{scattering} $b(\lambda)$. Puesto que el agua absorbe con mayor severidad las longitudes de onda largas ($a(\lambda_R) \gg a(\lambda_B)$), el canal rojo se atenúa drásticamente a distancias cortas \parencite{10.1145/3511021}.
+
+Esta atenuación asimétrica reduce la relación señal a ruido (SNR) en el canal R y atenia los gradientes de intensidad local $\nabla I(x,y)$, deformando la matriz Hessiana empleada en la detección de puntos característicos:
+
+\begin{equation}
+\mathbf{H} = \begin{bmatrix} I_x^2 & I_x I_y \\ I_x I_y & I_y^2 \end{bmatrix}
+\end{equation}
+
+Como consecuencia, los algoritmos tradicionales pierden precisión subpíxel al detectar las esquinas de los patrones de calibración, provocando un sesgo en la estimación del punto principal y la distancia focal \parencite{10772075}.
+
+\subsection{Modelo de Formación de Imagen con Iluminación Artificial de ROVs}
+
+En misiones con vehículos subacuáticos operados remotamente (ROV), la baja visibilidad exige el uso de focos LED embarcados. De acuerdo con el modelo óptico de Jaffe \parencite{Jaffe1990}, la irradiancia total $J(x)$ captada en el píxel $x$ se compone de la componente directa refleja por la escena y la dispersión trasera (\textit{backscatter}) generada por la interacción de la luz artificial con las partículas en suspensión:
+
+\begin{equation}
+J(x) = J_{\text{directa}}(x) e^{-c d(x)} + E_{\infty} \left( 1 - e^{-c d(x)} \right)
+\end{equation}
+
+donde $E_{\infty}$ representa la luz de velo o de fondo (\textit{veiling light}). Como señalan Zhou et al. \parencite{Zhou2025} y Sánchez-Saquín et al. \parencite{hamilton2024}, los focos LED montados a corta distancia del eje óptico producen patrones de iluminación altamente no uniformes, con conos de sobreexposición central y sombras periféricas que desestabilizan los métodos convencionales de calibración basados en priors de oscuridad homogénea.
+
+\subsection{Geometría Epipolar, Triangulación y Reconstrucción 3D}
+
+Una vez calculada la matriz intrínseca adaptativa $\mathbf{K}(T, \text{RGB})$, la reconstrucción métrica tridimensional de un punto espacial $\mathbf{P}$ se efectúa a partir de pares de proyecciones homologas $\mathbf{p}_1$ y $\mathbf{p}_2$ guiadas por la restricción epipolar \parencite{Hartley2004}:
+
+\begin{equation}
+\mathbf{p}_2^T \mathbf{F} \mathbf{p}_1 = 0 \quad \text{con} \quad \mathbf{E} = \mathbf{K}_2^T \mathbf{F} \mathbf{K}_1 = [\mathbf{t}]_\times \mathbf{R}
+\end{equation}
+
+donde $\mathbf{F}$ es la matriz fundamental, $\mathbf{E}$ es la matriz esencial y $[\mathbf{t}]_\times$ representa la matriz antisimétrica del vector de traslación. La correcta actualización de $\mathbf{K}(T, \text{RGB})$ ante cambios de temperatura y color garantiza que los rayos proyectados mediante triangulación converjan en la coordenada métrica real $E_{3D}$ expresada en milímetros, eliminando las distorsiones de escala provocadas por el medio dinámico \parencite{10772075, Meng:24}.
 
 % =====================================================================================
 % =====================================================================================
@@ -553,6 +638,8 @@ Para la iluminación, se colocaron de manera triaxial focos LED que permitieron 
 
 Para la manipulación cromática, se empleó un sistema de dosificación de colorante soluble en agua, medido con un sensor de color calibrado previamente para obtener concentraciones lineales por canal.
 
+\paragraph{Entregable 1:} Banco de pruebas donde se pueda controlar y monitorear la temperatura, el color y la iluminación del agua.
+
 \subsection{Adquisición y Análisis Monovariable}
 Se adquirieron conjuntos de imágenes del tablero de calibración situados a $1.0\text{ m}$ de distancia, capturando 10 tomas por cada orientación (mínimo 15 posiciones) y repitiéndolo para diferentes distancias bajo las siguientes condiciones aisladas:
 
@@ -561,6 +648,9 @@ Se adquirieron conjuntos de imágenes del tablero de calibración situados a $1.
     \item \textbf{Pruebas cromáticas RGB:} Se adicionó colorante selectivo por canal (R, G y B consecutivamente) en agua a temperatura constante. Se procesaron los patrones para cuantificar la degradación de gradientes de intensidad en las esquinas del ajedrez y su efecto en la localización subpíxel.
     \item \textbf{Pruebas de iluminación:} Se varió la intensidad luminosa de $0\%$ a $100\%$ y se modificó el ángulo de incidencia de los focos LED. Se analizó el impacto de sombras marcadas, saturación de píxeles y pérdida de contraste sobre el cálculo de los intrínsecos.
 \end{enumerate}
+\paragraph{Entregable 2:} DataSet del comportamiento de la imagen de la cámara según la variación de la temperatura.
+\paragraph{Entregable 3:} DataSet del comportamiento de la imagen de la cámara según la variación del color.
+\paragraph{Entregable 4:} DataSet del comportamiento de la imagen de la cámara según la variación de la iluminación.
 
 \subsection{Adquisición y Análisis Multivariable}
 Se capturó la matriz de datos acoplada combinando simulación de operación real de ROV:
@@ -570,6 +660,9 @@ Se capturó la matriz de datos acoplada combinando simulación de operación rea
     \item Variación simultánea de los tres factores ($T$, RGB e iluminación $I_{LED}$) para constituir la base de datos de entrenamiento y validación del algoritmo adaptativo.
 \end{enumerate}
 
+\paragraph{Entregable 5:} DataSet del comportamiento de la imagen de la cámara según la variación de las variables combinadas.
+\paragraph{Entregable 6:} Dataset combinado limpio y preparado para su uso.
+
 \subsection{Desarrollo del Algoritmo Adaptativo Liviano}
 A partir del análisis del conjunto de datos, se estructuró una arquitectura ligera dividida en dos bloques acoplados:
 \begin{itemize}
@@ -577,17 +670,39 @@ A partir del análisis del conjunto de datos, se estructuró una arquitectura li
     \item \textbf{Módulo de Estimación Intrínseca Adaptativa:} Un modelo funcional ajusta dinámicamente los parámetros $(f_x, f_y, c_x, c_y)$ en función de la temperatura medida $T$ y los índices cromáticos calculados, recalculando la matriz $\mathbf{K}(T, \text{RGB})$ en tiempo real sin requerir una recalibración completa con tablero.
 \end{itemize}
 
+\paragraph{Entregable 7:} Algoritmo de calibración que toma en cuenta las 3 variables.
+
 \subsection{Sistema de Medición y Reconstrucción Tridimensional}
 Se implementó un pipeline de visión estereoscópica/monocular corregida. Utilizando la matriz de intrínsecos adaptativa $\mathbf{K}(T, \text{RGB})$, se proyectan los puntos característicos detectados en la imagen al espacio tridimensional mediante geometría epipolar y triangulación, corrigiendo previamente la distorsión refractiva producida por el medio dinámico.
+
+\paragraph{Entregable 8:} Software de medición, análisis y reconstrucción a partir de imágenes.
 
 \subsection{Evaluación del Desempeño}
 El algoritmo desarrollado se evaluó comparativamente frente a la calibración estática convencional mediante tres métricas clave:
 \begin{enumerate}[noitemsep]
     \item \textbf{Error de reproyección ($e_{rep}$):} Calculado como la distancia euclidiana promedio entre las esquinas detectadas y las esquinas proyectadas mediante el modelo estimado.
-    \item \textbf{Estabilidad temporal de parámetros:} Desviación estándar de $f_x, f_y, c_x, c_y$ durante ciclos térmicos continuos.
+    \item \textbf{Estabilidad temporal de parámetros:} Desviación estándar de $c_x(f_x, f_y, c_x, c_y)$ durante ciclos térmicos continuos.
     \item \textbf{Error métrico 3D ($E_{3D}$):} Diferencia absoluta en milímetros entre la distancia real de patrones patrones de prueba sumergidos y la medida reconstruida digitalmente.
 \end{enumerate}
 
+\paragraph{Entregable 9:} Resultados y análisis de las pruebas del algoritmo.
+
+\paragraph{Entregable 10:} Análisis del comportamiento del algoritmo en entornos reales y en tiempo real.
+
+\subsection{Técnicas de Caracterización y Evaluación}
+Para garantizar la precisión en la extracción de parámetros intrínsecos y métricos, se emplearon las siguientes técnicas:
+\begin{itemize}[noitemsep]
+    \item \textbf{Detección subpíxel:} Localización de esquinas del tablero mediante detector de Harris refinado por ajuste parabólico del gradiente de intensidad.
+    \item \textbf{Optimización no lineal:} Estimación de la matriz $\mathbf{K}$ mediante el algoritmo de Levenberg-Marquardt, minimizando la función de costo del error de reproyección $e_{rep}$.
+    \item \textbf{Análisis de contraste por canal:} Evaluación de la relación señal-ruido (SNR) cromática en imágenes degradadas por colorante.
+\end{itemize}
+
+\subsection{Análisis Estadístico y Procesamiento de Datos}
+Para verificar la significancia estadística de las variaciones observadas:
+\begin{itemize}[noitemsep]
+    \item \textbf{ANOVA de dos vías:} Aplicado con un nivel de significancia $p < 0.05$ para evaluar la interacción entre la temperatura $T$ y la atenuación RGB sobre el error de reproyección.
+    \item \textbf{Prueba $t$-Student:} Utilizada para contrastar la exactitud métrica 3D del algoritmo adaptativo frente a los métodos de calibración estáticos estandarizados.
+\end{itemize}
 % =====================================================================================
 % =====================================================================================
 % =====================================================================================
